@@ -1,0 +1,33 @@
+acil_durum_takip/
+├── memory-bank/
+│   ├── 00_project-brief.md
+│   ├── 01_tech-context.md
+│   ├── 02_ui-structure.md          ← 7 ekran TAM olarak HTML’den
+│   ├── 03_data-models.md           ← Ürün, Çanta, Kategori, Uyarı
+│   ├── 04_notifications.md
+│   ├── 05_i18n-strategy.md
+│   ├── 06_system-patterns.md       ← Renk kodları, tema kuralları
+│   └── 99_warp-guide.md
+├── assets/
+│   └── lang/
+│       ├── tr.json
+│       ├── en.json
+│       ├── hi.json
+│       ├── es.json
+│       ├── ar.json
+│       ├── pt.json
+│       ├── it.json
+│       ├── fr.json
+│       ├── de.json
+│       ├── ja.json
+│       ├── ko.json
+│       ├── fa.json
+│       ├── uk.json
+│       ├── bn.json
+│       ├── ur.json
+│       ├── my.json
+│       ├── am.json
+│       ├── so.json
+│       ├── zh.json
+│       └── ru.json
+└── pubspec.yaml
