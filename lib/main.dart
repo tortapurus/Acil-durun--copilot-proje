@@ -1,74 +1,189 @@
-import 'package:acil_durum_takip/localization/app_localizations.dart';
-import 'package:acil_durum_takip/screens/ana_sayfa.dart';
-import 'package:acil_durum_takip/providers/product_provider.dart';
-import 'package:acil_durum_takip/providers/theme_provider.dart';
-import 'package:acil_durum_takip/providers/locale_provider.dart';
-import 'package:acil_durum_takip/providers/category_provider.dart';
-import 'package:acil_durum_takip/services/notification_service.dart';
-import 'package:acil_durum_takip/models/product.dart';
-import 'package:acil_durum_takip/models/category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/data/latest_all.dart' as tz;
+
+import 'screens/ana_sayfa.dart';
+import 'screens/acil_durum_paneli.dart';
+import 'screens/urun_listesi.dart';
+import 'screens/yeni_urun_ekle.dart';
+import 'screens/urun_detay.dart';
+import 'screens/bilgi_merkezi.dart';
+import 'screens/depo_paneli.dart';
+import 'screens/barkod_tara.dart';
+import 'screens/yeni_canta_olustur.dart';
+import 'screens/ayarlar_ekrani.dart';
+import 'screens/language_selection_screen.dart';
+import 'screens/acil_durum_numaralari.dart';
+import 'screens/yonetim_paneli.dart';
+import 'screens/uygulama_bilgileri_ekrani.dart';
+import 'theme/theme_colors.dart';
+import 'services/localization_service.dart';
+import 'services/data_service.dart';
+import 'services/settings_service.dart';
+import 'models/product.dart';
+import 'services/notification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Hive başlatılması
-  await Hive.initFlutter();
-  
-  // Adaptörleri kaydet
-  Hive.registerAdapter(ProductAdapter());
-  Hive.registerAdapter(CategoryAdapter());
-  
-  // Timezone başlatılması
   tz.initializeTimeZones();
   
-  // Notification service başlatılması
-  await NotificationService().init();
+  // Tüm debug çizgilerini ve overflow indicatorlarını kapat
+  debugPaintSizeEnabled = false;
+  debugDisableClipLayers = false;
+  debugDisablePhysicalShapeLayers = false;
+  debugDisableOpacityLayers = false;
   
-  runApp(const AcilDurumTakipApp());
+  // System UI overlay style
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarColor: Colors.black,
+    systemNavigationBarIconBrightness: Brightness.light,
+  ));
+  
+  // Localization servisini başlat
+  await LocalizationService.instance.loadSavedLanguage();
+  await NotificationService().initialize();
+  await SettingsService.instance.initialize();
+  
+  runApp(const MyApp());
 }
 
-class AcilDurumTakipApp extends StatelessWidget {
-  const AcilDurumTakipApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ThemeProvider()..init()),
-        ChangeNotifierProvider(create: (_) => LocaleProvider()..init()),
-        ChangeNotifierProvider(create: (_) => ProductProvider()..init()),
-        ChangeNotifierProvider(create: (_) => CategoryProvider()..init()),
+        ChangeNotifierProvider<LocalizationService>.value(
+          value: LocalizationService.instance,
+        ),
+        ChangeNotifierProvider<DataService>.value(
+          value: DataService.instance,
+        ),
+        ChangeNotifierProvider<SettingsService>.value(
+          value: SettingsService.instance,
+        ),
       ],
-      child: Consumer2<ThemeProvider, LocaleProvider>(
-        builder: (context, themeProvider, localeProvider, child) {
+      child: Consumer<LocalizationService>(
+        builder: (context, localizationService, child) {
+          final settings = context.watch<SettingsService>();
           return MaterialApp(
             title: 'Acil Durum Takip',
             debugShowCheckedModeBanner: false,
+            debugShowMaterialGrid: false,
+            showPerformanceOverlay: false,
+            checkerboardRasterCacheImages: false,
+            checkerboardOffscreenLayers: false,
+            showSemanticsDebugger: false,
+            theme: settings.themeData.copyWith(
+              bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                backgroundColor: settings.palette.bgCard,
+                selectedItemColor: ThemeColors.pastelGreen,
+                unselectedItemColor: ThemeColors.textGrey,
+              ),
+            ),
             localizationsDelegates: const [
-              AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: AppLocalizations.supportedLocales,
-            locale: localeProvider.locale,
-            localeResolutionCallback: (locale, supportedLocales) {
-              for (var supportedLocale in supportedLocales) {
-                if (supportedLocale.languageCode == locale?.languageCode) {
-                  return supportedLocale;
+            supportedLocales: const [
+              Locale('tr', ''),
+              Locale('en', ''),
+              Locale('ar', ''),
+              Locale('de', ''),
+              Locale('es', ''),
+              Locale('fr', ''),
+              Locale('it', ''),
+              Locale('pt', ''),
+              Locale('ru', ''),
+              Locale('zh', ''),
+              Locale('ja', ''),
+              Locale('ko', ''),
+              Locale('hi', ''),
+              Locale('bn', ''),
+              Locale('ur', ''),
+              Locale('fa', ''),
+              Locale('am', ''),
+              Locale('so', ''),
+              Locale('my', ''),
+              Locale('uk', ''),
+            ],
+            initialRoute: '/',
+            routes: {
+              '/': (context) => const AnaSayfa(),
+              '/acil-durum': (context) => const AcilDurumPaneli(),
+              '/depo': (context) => const DepoPaneli(),
+              '/barkod-tara': (context) => const BarkodTaraEkrani(),
+              '/urunler': (context) => const UrunListesi(),
+              '/yeni-urun': (context) {
+                final args = ModalRoute.of(context)?.settings.arguments;
+
+                String? imagePath;
+                Uint8List? imageBytes;
+                Product? initialProduct;
+
+                if (args is String) {
+                  initialProduct = DataService.instance.getProductById(args);
+                } else if (args is Product) {
+                  initialProduct = args;
+                } else if (args is Map<String, dynamic>) {
+                  imagePath = args['imagePath'] as String?;
+                  final dynamic bytes = args['imageBytes'];
+                  if (bytes is Uint8List) {
+                    imageBytes = bytes;
+                  } else if (bytes is List<int>) {
+                    imageBytes = Uint8List.fromList(bytes);
+                  }
+
+                  final dynamic productArg = args['product'];
+                  if (productArg is Product) {
+                    initialProduct = productArg;
+                  } else {
+                    final String? productId = args['productId'] as String?;
+                    if (productId != null) {
+                      initialProduct =
+                          DataService.instance.getProductById(productId);
+                    }
+                  }
                 }
-              }
-              return supportedLocales.first;
+
+                return YeniUrunEkle(
+                  initialImagePath: imagePath,
+                  initialImageBytes: imageBytes,
+                  initialProduct: initialProduct,
+                );
+              },
+              '/urun-detay': (context) {
+                final args = ModalRoute.of(context)?.settings.arguments;
+                String? productId;
+
+                if (args is String) {
+                  productId = args;
+                } else if (args is Map<String, dynamic>) {
+                  productId = args['productId'] as String?;
+                }
+
+                return UrunDetay(productId: productId);
+              },
+              '/bilgi': (context) => const BilgiMerkezi(),
+              '/yeni-canta': (context) => const YeniCantaOlustur(),
+              '/ayarlar': (context) => const AyarlarEkrani(),
+              '/yonetim-paneli': (context) => const YonetimPaneli(),
+              '/app-info': (context) => const UygulamaBilgileriEkrani(),
+              '/language-selection': (context) => const LanguageSelectionScreen(),
+              '/acil-numaralar': (context) => const AcilDurumNumaralari(),
             },
-            theme: themeProvider.lightTheme,
-            darkTheme: themeProvider.darkTheme,
-            themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            home: const AnaSayfa(),
           );
         },
       ),

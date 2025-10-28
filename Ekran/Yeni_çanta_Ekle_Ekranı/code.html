@@ -1,0 +1,41 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-900">
+<div class="relative flex size-full min-h-screen flex-col bg-[#1A181D] dark justify-between group/design-root" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+<div class="flex flex-col">
+<header class="flex items-center justify-between p-4">
+<button class="text-white p-2 rounded-full hover:bg-white/10">
+<span class="material-symbols-outlined"> close </span>
+</button>
+<h1 class="text-white text-xl font-bold">Yeni Çanta</h1>
+<div class="w-10"></div>
+</header>
+<main class="flex-grow p-4 space-y-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-gray-400" for="bag-name">Çanta Adı</label>
+<input class="form-input w-full rounded-xl border-none bg-[#2C2A30] text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#994ce6] transition-shadow duration-200 p-4" id="bag-name" placeholder="Örn: Ev Acil Durum Çantası" value=""/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-gray-400" for="notes">Notlar (İsteğe Bağlı)</label>
+<textarea class="form-textarea w-full rounded-xl border-none bg-[#2C2A30] text-white placeholder:text-gray-500 focus:ring-2 focus:ring-[#994ce6] transition-shadow duration-200 min-h-[120px] p-4 resize-none" id="notes" placeholder="Bu çantanın içeriği veya konumu hakkında notlar ekleyin..."></textarea>
+</div>
+</main>
+</div>
+<footer class="p-4 sticky bottom-0 bg-[#1A181D]">
+<button class="w-full h-14 flex items-center justify-center rounded-xl bg-[#994ce6] text-white text-lg font-bold hover:bg-opacity-90 transition-colors shadow-[0_4px_20px_rgba(153,76,230,0.4)]">
+          Çantayı Oluştur
+        </button>
+</footer>
+</div>
+
+</body></html>

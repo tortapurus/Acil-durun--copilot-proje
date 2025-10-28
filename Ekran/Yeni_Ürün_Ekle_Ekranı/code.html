@@ -1,0 +1,100 @@
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #38e07b;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#111714]">
+<div class="relative flex size-full min-h-screen flex-col dark justify-between group/design-root overflow-x-hidden" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+<div class="flex-grow">
+<header class="flex items-center bg-[#111714] p-4 pb-2 justify-between sticky top-0 z-10">
+<button class="text-white">
+<span class="material-symbols-outlined text-3xl"> close </span>
+</button>
+<h1 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] absolute left-1/2 -translate-x-1/2">Yeni Ürün Ekle</h1>
+</header>
+<main class="p-4 space-y-6">
+<div class="flex items-end gap-2.5">
+<div class="flex-grow">
+<label class="block text-white text-base font-medium leading-normal pb-2" for="product-name">Ürün Adı</label>
+<input class="form-input w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] h-14 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="product-name" placeholder="Ürün adını girin" type="text"/>
+</div>
+<button class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-[#29382f] text-white transition-colors hover:bg-opacity-90 active:scale-95">
+<span class="material-symbols-outlined text-3xl"> barcode_scanner </span>
+</button>
+</div>
+<div>
+<label class="block text-white text-base font-medium leading-normal pb-2" for="category">Kategori</label>
+<div class="relative">
+<select class="form-select appearance-none w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] h-14 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="category">
+<option disabled="" selected="" value="">Kategori seçin</option>
+<option value="gida">Gıda</option>
+<option value="su">Su</option>
+<option value="ilk-yardim">İlk Yardım</option>
+<option value="hijyen">Hijyen</option>
+<option value="yeni-ekle">Yeni Kategori Ekle...</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#9eb7a8] pointer-events-none"> expand_more </span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-white text-base font-medium leading-normal pb-2" for="expiry-date">Son Kul. / İnc. Tarihi</label>
+<div class="relative">
+<input class="form-input w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] h-14 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="expiry-date" onblur="(this.type='text')" onfocus="(this.type='date')" placeholder="Tarih seçin" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#9eb7a8] pointer-events-none"> calendar_today </span>
+</div>
+</div>
+<div>
+<label class="block text-white text-base font-medium leading-normal pb-2" for="reminder-date">Hatırlatma Tarihi</label>
+<div class="relative">
+<input class="form-input w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] h-14 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="reminder-date" onblur="(this.type='text')" onfocus="(this.type='date')" placeholder="Tarih seçin" type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#9eb7a8] pointer-events-none"> event_upcoming </span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-white text-base font-medium leading-normal pb-2" for="notes">Notlar (isteğe bağlı)</label>
+<textarea class="form-textarea w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] min-h-36 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="notes" placeholder="Notlar ekleyin"></textarea>
+</div>
+<div>
+<label class="block text-white text-base font-medium leading-normal pb-2" for="location-note">Konum Notu</label>
+<input class="form-input w-full rounded-xl text-white focus:outline-0 focus:ring-2 focus:ring-[var(--primary-color)] border-none bg-[#29382f] h-14 placeholder:text-[#9eb7a8] p-4 text-base font-normal leading-normal" id="location-note" placeholder="Konum notu ekleyin" type="text"/>
+</div>
+<div>
+<label class="cursor-pointer" for="image-upload">
+<div class="flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-[#3d5245] px-6 py-10 text-center hover:border-[var(--primary-color)] transition-colors">
+<span class="material-symbols-outlined text-4xl text-white"> add_a_photo </span>
+<p class="text-white text-lg font-bold">Resim Yükle</p>
+<p class="text-[#9eb7a8] text-sm">Resim eklemek için dokunun</p>
+</div>
+<input class="hidden" id="image-upload" type="file"/>
+</label>
+</div>
+</main>
+</div>
+<footer class="sticky bottom-0 bg-[#111714] bg-opacity-80 backdrop-blur-sm p-4">
+<button class="w-full h-14 px-5 flex items-center justify-center rounded-full bg-[var(--primary-color)] text-[#111714] text-base font-bold tracking-[0.015em] hover:bg-opacity-90 active:scale-95 transition-all">
+<span class="truncate">Kaydet</span>
+</button>
+</footer>
+</div>
+</body></html>

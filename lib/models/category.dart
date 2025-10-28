@@ -1,64 +1,215 @@
-import 'package:hive/hive.dart';
+class Category {
+  final String id;
+  final String name;
+  final bool isCustom;
+  final String? translationKey;
 
-part 'category.g.dart';
-
-@HiveType(typeId: 1)
-class Category extends HiveObject {
-  @HiveField(0)
-  late String id;
-
-  @HiveField(1)
-  late String ad;
-
-  @HiveField(2)
-  late String ikonKodu;
-
-  @HiveField(3)
-  bool varsayilan;
-
-  Category({
+  const Category({
     required this.id,
-    required this.ad,
-    required this.ikonKodu,
-    this.varsayilan = false,
+    required this.name,
+    this.isCustom = false,
+    this.translationKey,
   });
-}
 
-// Varsayılan kategoriler - 02_ui-structure.md'den
-class DefaultCategories {
-  static List<Category> get list => [
-        Category(id: 'su', ad: 'Su', ikonKodu: 'water_drop', varsayilan: true),
-        Category(id: 'konserve', ad: 'Konserve', ikonKodu: 'inventory', varsayilan: true),
-        Category(id: 'kuru_yemis', ad: 'Kuru Yemiş', ikonKodu: 'restaurant', varsayilan: true),
-        Category(id: 'yiyecek', ad: 'Yiyecek', ikonKodu: 'fastfood', varsayilan: true),
-        Category(id: 'ilk_yardim', ad: 'İlk yardım çantası', ikonKodu: 'medical_services', varsayilan: true),
-        Category(id: 'el_feneri', ad: 'El feneri', ikonKodu: 'flashlight_on', varsayilan: true),
-        Category(id: 'pilli_radyo', ad: 'Pilli radyo', ikonKodu: 'radio', varsayilan: true),
-        Category(id: 'battaniye', ad: 'Battaniye', ikonKodu: 'bed', varsayilan: true),
-        Category(id: 'uyku_tulumu', ad: 'Uyku tulumu', ikonKodu: 'hotel', varsayilan: true),
-        Category(id: 'cakı', ad: 'Çok amaçlı çakı', ikonKodu: 'construction', varsayilan: true),
-        Category(id: 'eldiven', ad: 'İş eldiveni', ikonKodu: 'front_hand', varsayilan: true),
-        Category(id: 'kibrit', ad: 'Kibrit', ikonKodu: 'local_fire_department', varsayilan: true),
-        Category(id: 'cakmak', ad: 'Çakmak', ikonKodu: 'whatshot', varsayilan: true),
-        Category(id: 'maske', ad: 'Toz maskesi', ikonKodu: 'masks', varsayilan: true),
-        Category(id: 'islak_mendil', ad: 'Islak mendil', ikonKodu: 'cleaning_services', varsayilan: true),
-        Category(id: 'tuvalet_kagidi', ad: 'Tuvalet kağıdı', ikonKodu: 'bathroom', varsayilan: true),
-        Category(id: 'hijyenik_ped', ad: 'Hijyenik ped', ikonKodu: 'favorite', varsayilan: true),
-        Category(id: 'evraklar', ad: 'Kimlik, tapu, sigorta, pasaport', ikonKodu: 'description', varsayilan: true),
-        Category(id: 'nakit', ad: 'Nakit para', ikonKodu: 'payments', varsayilan: true),
-        Category(id: 'kiyafet', ad: 'Yedek kıyafet', ikonKodu: 'checkroom', varsayilan: true),
-        Category(id: 'cop_torbasi', ad: 'Çöp torbası', ikonKodu: 'delete', varsayilan: true),
-        Category(id: 'sabun', ad: 'Sabun', ikonKodu: 'soap', varsayilan: true),
-        Category(id: 'dis_fircasi', ad: 'Diş fırçası ve macunu', ikonKodu: 'medication', varsayilan: true),
-        Category(id: 'su_aritma_tablet', ad: 'Su Arıtma Tabletleri', ikonKodu: 'water', varsayilan: true),
-        Category(id: 'su_aritma_cihazi', ad: 'Su arıtma cihazı', ikonKodu: 'water_drop', varsayilan: true),
-        Category(id: 'pusula_harita', ad: 'Pusula ve Harita', ikonKodu: 'map', varsayilan: true),
-        Category(id: 'tabanca', ad: 'Tabanca', ikonKodu: 'gavel', varsayilan: true),
-        Category(id: 'tabanca_mermisi', ad: 'Tabanca Mermisi', ikonKodu: 'circle', varsayilan: true),
-        Category(id: 'tufek', ad: 'Tüfek', ikonKodu: 'gavel', varsayilan: true),
-        Category(id: 'tufek_mermisi', ad: 'Tüfek Mermisi', ikonKodu: 'circle', varsayilan: true),
-        Category(id: 'slug_mermi', ad: 'Slug mermiler', ikonKodu: 'circle', varsayilan: true),
-        Category(id: 'sacma_mermi', ad: 'Saçma mermiler', ikonKodu: 'circle', varsayilan: true),
-        Category(id: 'kursun_mermi', ad: 'Kurşunsuz mermiler', ikonKodu: 'circle', varsayilan: true),
-      ];
+  Category copyWith({
+    String? id,
+    String? name,
+    bool? isCustom,
+    String? translationKey,
+  }) {
+    return Category(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      isCustom: isCustom ?? this.isCustom,
+      translationKey: translationKey ?? this.translationKey,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'isCustom': isCustom,
+      'translationKey': translationKey,
+    };
+  }
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'],
+      name: json['name'],
+      isCustom: json['isCustom'] ?? false,
+      translationKey: json['translationKey'],
+    );
+  }
+
+  static const List<Category> _fixedCategories = [
+    Category(
+      id: 'water',
+      name: 'Su',
+      translationKey: 'categories.fixed.water',
+    ),
+    Category(
+      id: 'canned_food',
+      name: 'Konserve',
+      translationKey: 'categories.fixed.canned_food',
+    ),
+    Category(
+      id: 'nuts',
+      name: 'Kuru Yemiş',
+      translationKey: 'categories.fixed.nuts',
+    ),
+    Category(
+      id: 'food',
+      name: 'Yiyecek',
+      translationKey: 'categories.fixed.food',
+    ),
+    Category(
+      id: 'first_aid_kit',
+      name: 'İlk yardım çantası',
+      translationKey: 'categories.fixed.first_aid_kit',
+    ),
+    Category(
+      id: 'flashlight',
+      name: 'El feneri',
+      translationKey: 'categories.fixed.flashlight',
+    ),
+    Category(
+      id: 'battery_radio',
+      name: 'Pilli radyo',
+      translationKey: 'categories.fixed.battery_radio',
+    ),
+    Category(
+      id: 'blanket',
+      name: 'Battaniye',
+      translationKey: 'categories.fixed.blanket',
+    ),
+    Category(
+      id: 'sleeping_bag',
+      name: 'Uyku tulumu',
+      translationKey: 'categories.fixed.sleeping_bag',
+    ),
+    Category(
+      id: 'multi_tool',
+      name: 'Çok amaçlı çakı',
+      translationKey: 'categories.fixed.multi_tool',
+    ),
+    Category(
+      id: 'work_gloves',
+      name: 'İş eldiveni',
+      translationKey: 'categories.fixed.work_gloves',
+    ),
+    Category(
+      id: 'matches',
+      name: 'Kibrit',
+      translationKey: 'categories.fixed.matches',
+    ),
+    Category(
+      id: 'lighter',
+      name: 'Çakmak',
+      translationKey: 'categories.fixed.lighter',
+    ),
+    Category(
+      id: 'dust_mask',
+      name: 'Toz maskesi',
+      translationKey: 'categories.fixed.dust_mask',
+    ),
+    Category(
+      id: 'wet_wipes',
+      name: 'Islak mendil',
+      translationKey: 'categories.fixed.wet_wipes',
+    ),
+    Category(
+      id: 'toilet_paper',
+      name: 'Tuvalet kağıdı',
+      translationKey: 'categories.fixed.toilet_paper',
+    ),
+    Category(
+      id: 'sanitary_pad',
+      name: 'Hijyenik ped',
+      translationKey: 'categories.fixed.sanitary_pad',
+    ),
+    Category(
+      id: 'documents',
+      name: 'Kimlik, tapu, sigorta, pasaport',
+      translationKey: 'categories.fixed.documents',
+    ),
+    Category(
+      id: 'cash',
+      name: 'Nakit para',
+      translationKey: 'categories.fixed.cash',
+    ),
+    Category(
+      id: 'spare_clothes',
+      name: 'Yedek kıyafet',
+      translationKey: 'categories.fixed.spare_clothes',
+    ),
+    Category(
+      id: 'trash_bag',
+      name: 'Çöp torbası',
+      translationKey: 'categories.fixed.trash_bag',
+    ),
+    Category(
+      id: 'soap',
+      name: 'Sabun',
+      translationKey: 'categories.fixed.soap',
+    ),
+    Category(
+      id: 'toothbrush_toothpaste',
+      name: 'Diş fırçası ve macunu',
+      translationKey: 'categories.fixed.toothbrush_toothpaste',
+    ),
+    Category(
+      id: 'water_purification_tablets',
+      name: 'Su Arıtma Tabletleri',
+      translationKey: 'categories.fixed.water_purification_tablets',
+    ),
+    Category(
+      id: 'water_purifier',
+      name: 'Su arıtma cihazı',
+      translationKey: 'categories.fixed.water_purifier',
+    ),
+    Category(
+      id: 'compass_map',
+      name: 'Pusula ve Harita',
+      translationKey: 'categories.fixed.compass_map',
+    ),
+    Category(
+      id: 'handgun',
+      name: 'Tabanca',
+      translationKey: 'categories.fixed.handgun',
+    ),
+    Category(
+      id: 'handgun_ammo',
+      name: 'Tabanca Mermisi',
+      translationKey: 'categories.fixed.handgun_ammo',
+    ),
+    Category(
+      id: 'rifle',
+      name: 'Tüfek',
+      translationKey: 'categories.fixed.rifle',
+    ),
+    Category(
+      id: 'rifle_ammo',
+      name: 'Tüfek Mermisi',
+      translationKey: 'categories.fixed.rifle_ammo',
+    ),
+    Category(
+      id: 'slug_rounds',
+      name: 'Slug mermiler',
+      translationKey: 'categories.fixed.slug_rounds',
+    ),
+    Category(
+      id: 'shot_shells',
+      name: 'Saçma mermiler',
+      translationKey: 'categories.fixed.shot_shells',
+    ),
+    Category(
+      id: 'lead_free_ammo',
+      name: 'Kurşunsuz mermiler',
+      translationKey: 'categories.fixed.lead_free_ammo',
+    ),
+  ];
+
+  static List<Category> get fixedCategories => List<Category>.from(_fixedCategories);
 }

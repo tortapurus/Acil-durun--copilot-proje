@@ -1,99 +1,111 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import '../models/product.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();
-  factory NotificationService() => _instance;
-  NotificationService._internal();
-
-  final FlutterLocalNotificationsPlugin _notifications =
+  final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  Future<void> init() async {
+  factory NotificationService() {
+    return _instance;
+  }
+
+  NotificationService._internal();
+
+  Future<void> initialize() async {
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    const DarwinInitializationSettings iosSettings =
+    const DarwinInitializationSettings iOSSettings =
         DarwinInitializationSettings(
-      requestAlertPermission: true,
-      requestBadgePermission: true,
       requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
     );
 
-    const InitializationSettings initSettings = InitializationSettings(
+    const InitializationSettings settings = InitializationSettings(
       android: androidSettings,
-      iOS: iosSettings,
+      iOS: iOSSettings,
     );
 
-    await _notifications.initialize(initSettings);
+    await _notificationsPlugin.initialize(settings);
   }
 
-  Future<void> scheduleProductReminder(Product product) async {
-    try {
-      const AndroidNotificationDetails androidDetails =
-          AndroidNotificationDetails(
-        'product_reminders',
-        'Ürün Hatırlatmaları',
-        channelDescription: 'Son kullanma tarihi yaklaşan ürünler için hatırlatmalar',
-        importance: Importance.high,
-        priority: Priority.high,
-      );
-
-      const DarwinNotificationDetails iosDetails = DarwinNotificationDetails();
-
-      const NotificationDetails details = NotificationDetails(
-        android: androidDetails,
-        iOS: iosDetails,
-      );
-
-      // Hatırlatma tarihi geçmişte mi kontrol et
-      if (product.hatirlatmaTarihi.isBefore(DateTime.now())) {
-        return; // Geçmiş tarihler için bildirim zamanlanmaz
-      }
-
-      await _notifications.zonedSchedule(
-        product.id.hashCode,
-        'Ürün Hatırlatması',
-        '${product.ad} son kullanma tarihi yaklaşıyor!',
-        tz.TZDateTime.from(product.hatirlatmaTarihi, tz.local),
-        details,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-      );
-    } catch (e) {
-      // Exact alarm izni yoksa veya başka bir hata varsa sessizce devam et
-      print('Bildirim zamanlanamadı: $e');
-    }
-  }
-
-  Future<void> cancelProductReminder(String productId) async {
-    await _notifications.cancel(productId.hashCode);
-  }
-
-  Future<void> showImmediateNotification(String title, String body) async {
-    const AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails(
-      'immediate_notifications',
-      'Anında Bildirimler',
-      channelDescription: 'Önemli anında bildirimler',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-
-    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails();
-
-    const NotificationDetails details = NotificationDetails(
-      android: androidDetails,
-      iOS: iosDetails,
-    );
-
-    await _notifications.show(
-      DateTime.now().millisecondsSinceEpoch.remainder(100000),
+  Future<void> scheduleReminder({
+    required int id,
+    required String title,
+    required String body,
+    required DateTime scheduledTime,
+    bool playSound = true,
+    bool enableVibration = true,
+  }) async {
+    await _notificationsPlugin.zonedSchedule(
+      id,
       title,
       body,
-      details,
+      tz.TZDateTime.from(scheduledTime, tz.local),
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          'acil_durum_channel',
+          'Acil Durum Bildirimleri',
+          channelDescription: 'Ürünlerin son kullanma tarihi hatırlatmaları',
+          importance: Importance.high,
+          priority: Priority.high,
+          showWhen: true,
+          playSound: playSound,
+          enableVibration: enableVibration,
+        ),
+        iOS: DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: playSound,
+        ),
+      ),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+  matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
     );
+  }
+
+  Future<void> showNotification({
+    required int id,
+    required String title,
+    required String body,
+    bool playSound = true,
+    bool enableVibration = true,
+  }) async {
+    final AndroidNotificationDetails androidDetails =
+        AndroidNotificationDetails(
+      'acil_durum_channel',
+      'Acil Durum Bildirimleri',
+      channelDescription: 'Acil durum takip sistemi bildirimleri',
+      importance: Importance.high,
+      priority: Priority.high,
+      playSound: playSound,
+      enableVibration: enableVibration,
+    );
+
+    final DarwinNotificationDetails iOSDetails =
+        DarwinNotificationDetails(
+      presentAlert: true,
+      presentBadge: true,
+      presentSound: playSound,
+    );
+
+    final NotificationDetails platformDetails = NotificationDetails(
+      android: androidDetails,
+      iOS: iOSDetails,
+    );
+
+    await _notificationsPlugin.show(id, title, body, platformDetails);
+  }
+
+  Future<void> cancelNotification(int id) async {
+    await _notificationsPlugin.cancel(id);
+  }
+
+  Future<void> cancelAllNotifications() async {
+    await _notificationsPlugin.cancelAll();
   }
 }

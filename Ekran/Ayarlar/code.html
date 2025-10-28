@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    :root {
+      --pastel-green: #A2E4B8;
+      --pastel-yellow: #F8E4A0;
+      --pastel-red: #F4A8A8;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #4A4A4A;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+    input:checked+.slider {
+      background-color: var(--pastel-green);
+    }
+    input:focus+.slider {
+      box-shadow: 0 0 1px var(--pastel-green);
+    }
+    input:checked+.slider:before {
+      -webkit-transform: translateX(20px);
+      -ms-transform: translateX(20px);
+      transform: translateX(20px);
+    }
+    .slider.round {
+      border-radius: 34px;
+    }
+    .slider.round:before {
+      border-radius: 50%;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#121212]">
+<div class="relative flex size-full min-h-screen flex-col bg-[#121212] dark justify-between group/design-root" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+<div class="flex flex-col flex-1">
+<header class="flex items-center p-4 justify-between sticky top-0 bg-[#121212] z-20">
+<button class="text-white">
+<span class="material-symbols-outlined"> arrow_back_ios </span>
+</button>
+<h1 class="text-white text-2xl font-bold">Ayarlar</h1>
+<div class="w-8"></div>
+</header>
+<div class="flex-1 p-4 space-y-6">
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">Görünüm</h2>
+<div class="bg-[#1F1F1F] rounded-xl p-4 space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-white">Koyu Tema</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+<div class="border-t border-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-white">Ürün Resimlerini Göster</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">Yönetim</h2>
+<div class="bg-[#1F1F1F] rounded-xl">
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Kategorileri Yönet</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">Bildirimler</h2>
+<div class="bg-[#1F1F1F] rounded-xl p-4 space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-white">Stok Uyarıları</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+<div class="border-t border-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-white">Haftalık Kontrol Hatırlatıcısı</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+<div class="border-t border-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-white">Acil Durum Düdüğü</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+<div class="border-t border-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-white">Bildirim Sesi</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+<div class="border-t border-gray-700"></div>
+<div class="flex justify-between items-center">
+<span class="text-white">Titreşim</span>
+<label class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">İzinler</h2>
+<div class="bg-[#1F1F1F] rounded-xl p-4">
+<div class="flex justify-between items-center">
+<span class="text-white">Konum Erişimi</span>
+<label class="switch">
+<input type="checkbox"/>
+<span class="slider round"></span>
+</label>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">Uyarı Süresi</h2>
+<div class="bg-[#1F1F1F] rounded-xl p-4">
+<div class="flex justify-between items-center">
+<span class="text-white">SKT'den kaç gün önce</span>
+<div class="flex items-center gap-2">
+<button class="bg-[#333333] text-white rounded-full w-8 h-8 flex items-center justify-center text-xl">-</button>
+<span class="text-white font-bold text-lg w-8 text-center">30</span>
+<button class="bg-[#333333] text-white rounded-full w-8 h-8 flex items-center justify-center text-xl">+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">Veri Yönetimi</h2>
+<div class="bg-[#1F1F1F] rounded-xl">
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Veri Yedekle</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+<div class="border-t border-gray-700 mx-4"></div>
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Veri Geri Yükle</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<h2 class="text-lg font-semibold text-gray-400">GENEL</h2>
+<div class="bg-[#1F1F1F] rounded-xl">
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Uygulama Bilgileri</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+<div class="border-t border-gray-700 mx-4"></div>
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Yardım &amp; Destek</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+<div class="border-t border-gray-700 mx-4"></div>
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Kullanım Sözleşmesi</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+<div class="border-t border-gray-700 mx-4"></div>
+<div class="flex justify-between items-center p-4">
+<span class="text-white">Gizlilik Politikası</span>
+<span class="material-symbols-outlined text-gray-400"> chevron_right </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="sticky bottom-0 border-t border-gray-800 bg-[#121212] py-2">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="text-xs">Çantalar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="text-xs">Depo</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="text-xs">Ürünler</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-xs">Kategoriler</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--pastel-green)]" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-xs font-semibold">Ayarlar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="text-xs">Bilgi Merkezi</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

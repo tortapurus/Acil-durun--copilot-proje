@@ -1,30 +1,57 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:acil_durum_takip/main.dart';
+import 'package:acil_durum_takip/services/localization_service.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  setUpAll(() async {
+    SharedPreferences.setMockInitialValues({});
+
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler('flutter/assets', (ByteData? message) async {
+      if (message == null) return null;
+      final MethodCall call =
+          const StandardMethodCodec().decodeMethodCall(message);
+      final String assetKey = call.arguments as String;
+      final File assetFile = File('assets/$assetKey');
+      if (!await assetFile.exists()) {
+        return null;
+      }
+      final Uint8List bytes = await assetFile.readAsBytes();
+      return bytes.buffer.asByteData();
+    });
+
+    await LocalizationService.instance.loadLanguage('tr');
+  });
+
+  tearDownAll(() {
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler('flutter/assets', null);
+  });
+
+  testWidgets('Ana Sayfa bottom navigation renders correctly',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.byType(BottomNavigationBar), findsOneWidget);
+    final BottomNavigationBar bottomNav = tester.widget(
+      find.byType(BottomNavigationBar),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(bottomNav.items.length, 6);
+    expect(bottomNav.currentIndex, 0);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    final String homeLabel = LocalizationService.instance.t('nav.home');
+    expect(bottomNav.items.first.label, homeLabel);
+    expect(find.text(homeLabel), findsWidgets);
+    expect(find.byIcon(Icons.home_outlined), findsOneWidget);
   });
 }

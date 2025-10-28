@@ -1,222 +1,295 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/bag.dart';
+import '../services/data_service.dart';
+import '../services/localization_service.dart';
+import '../theme/theme_colors.dart';
 
 class YeniCantaOlustur extends StatefulWidget {
   const YeniCantaOlustur({super.key});
 
   @override
   State<YeniCantaOlustur> createState() => _YeniCantaOlusturState();
+
+  // Static method to show as modal
+  static Future<void> showModal(BuildContext context) async {
+    return showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const YeniCantaOlustur(),
+    );
+  }
 }
 
 class _YeniCantaOlusturState extends State<YeniCantaOlustur> {
-  final _formKey = GlobalKey<FormState>();
-  final _cantaAdiController = TextEditingController();
-  final _notlarController = TextEditingController();
+  late TextEditingController _bagNameController;
+  late TextEditingController _notesController;
+  bool _isSaving = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bagNameController = TextEditingController();
+    _notesController = TextEditingController();
+  }
 
   @override
   void dispose() {
-    _cantaAdiController.dispose();
-    _notlarController.dispose();
+    _bagNameController.dispose();
+    _notesController.dispose();
     super.dispose();
-  }
-
-  void _cantaOlustur() {
-    if (_formKey.currentState!.validate()) {
-      // Çanta oluşturma işlemi
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('${_cantaAdiController.text} oluşturuldu!'),
-          backgroundColor: const Color(0xFF994CE6),
-        ),
-      );
-      Navigator.pop(context);
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF1A181D),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1A181D),
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: const Text(
-          'Yeni Çanta Oluştur',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.white,
+    return Consumer<LocalizationService>(
+      builder: (context, loc, child) {
+        final bool isButtonEnabled =
+            _bagNameController.text.trim().isNotEmpty && !_isSaving;
+
+        return Container(
+        height: MediaQuery.of(context).size.height * 0.95,
+        decoration: const BoxDecoration(
+          color: ThemeColors.bg1,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
           ),
         ),
-      ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Çanta İkonu
-              Center(
-                child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF994CE6).withOpacity(0.2),
-                    shape: BoxShape.circle,
+              // Header with close button and title
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: const Icon(
+                      Icons.close,
+                      color: ThemeColors.textWhite,
+                      size: 28,
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.work_outline,
-                    size: 50,
-                    color: Color(0xFF994CE6),
+                  const Spacer(),
+                  Text(
+                    loc.t('bag.create.title'),
+                    style: const TextStyle(
+                      color: ThemeColors.textWhite,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
+                  const Spacer(),
+                  const SizedBox(width: 28),
+                ],
               ),
-
-              const SizedBox(height: 32),
-
-              // Çanta Adı
-              const Text(
-                'Çanta Adı',
-                style: TextStyle(
-                  color: Colors.white,
+              
+              const SizedBox(height: 40),
+              
+              // Bag name section
+              Text(
+                loc.t('bag.create.name'),
+                style: const TextStyle(
+                  color: ThemeColors.textWhite,
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _cantaAdiController,
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  hintText: 'Örn: Ev Acil Durum Çantası',
-                  hintStyle: const TextStyle(color: Color(0xFF666666)),
-                  filled: true,
-                  fillColor: const Color(0xFF2A2730),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF994CE6), width: 2),
-                  ),
-                  contentPadding: const EdgeInsets.all(16),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Çanta adı gereklidir';
-                  }
-                  return null;
-                },
-              ),
-
-              const SizedBox(height: 24),
-
-              // Notlar (İsteğe Bağlı)
-              const Text(
-                'Notlar (İsteğe Bağlı)',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 8),
-              TextFormField(
-                controller: _notlarController,
-                style: const TextStyle(color: Colors.white),
-                maxLines: 5,
-                decoration: InputDecoration(
-                  hintText: 'Çanta hakkında notlar ekleyin...',
-                  hintStyle: const TextStyle(color: Color(0xFF666666)),
-                  filled: true,
-                  fillColor: const Color(0xFF2A2730),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Color(0xFF994CE6), width: 2),
-                  ),
-                  contentPadding: const EdgeInsets.all(16),
-                ),
-              ),
-
-              const SizedBox(height: 32),
-
-              // Bilgilendirme Kutusu
+              const SizedBox(height: 12),
+              
+              // Bag name input - Exact PNG styling with no borders
               Container(
-                padding: const EdgeInsets.all(16),
+                height: 56,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF994CE6).withOpacity(0.1),
+                  color: const Color(0xFF2D2D2D),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: const Color(0xFF994CE6).withOpacity(0.3),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TextField(
+                    controller: _bagNameController,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: loc.t('bag.create.name_placeholder'),
+                      hintStyle: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 16,
+                      ),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      focusedErrorBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                   ),
                 ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.info_outline,
-                      color: Color(0xFF994CE6),
-                      size: 24,
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        'Oluşturduğunuz çantaya daha sonra ürün ekleyebilirsiniz.',
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  ],
+              ),
+              
+              const SizedBox(height: 32),
+              
+              // Notes section
+              Text(
+                loc.t('bag.create.notes'),
+                style: const TextStyle(
+                  color: ThemeColors.textWhite,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+              const SizedBox(height: 12),
+              
+              // Notes input - Exact PNG styling with no borders
+              Container(
+                height: 120,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF2D2D2D),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: TextField(
+                    controller: _notesController,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      height: 1.4,
+                    ),
+                    maxLines: null,
+                    expands: true,
+                    textAlignVertical: TextAlignVertical.top,
+                    decoration: InputDecoration(
+                      hintText: loc.t('bag.create.notes_placeholder'),
+                      hintStyle: TextStyle(
+                        color: Colors.grey[500],
+                        fontSize: 16,
+                        height: 1.4,
+                      ),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                      focusedErrorBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) {
+                      setState(() {});
+                    },
+                  ),
+                ),
+              ),
+              
+              const Spacer(),
+              
+              // Create button - Exact PNG styling with gradient
+              Container(
+                width: double.infinity,
+                height: 56,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: isButtonEnabled
+                        ? const [Color(0xFF8B5CF6), Color(0xFFBB6BD9)]
+                        : const [Color(0xFF454545), Color(0xFF565656)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: isButtonEnabled ? () => _handleCreate(loc) : null,
+                    child: Center(
+                      child: _isSaving
+                          ? const SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : Text(
+                              loc.t('bag.create.button'),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+              
+              // Safe area padding
+              SizedBox(height: MediaQuery.of(context).padding.bottom + 16),
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: const BoxDecoration(
-          color: Color(0xFF1A181D),
-          border: Border(top: BorderSide(color: Color(0xFF333333))),
-        ),
-        child: ElevatedButton(
-          onPressed: _cantaOlustur,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF994CE6), // primary-purple
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            elevation: 8,
-            shadowColor: const Color(0xFF994CE6).withOpacity(0.5),
-          ),
-          child: const Text(
-            'Çantayı Oluştur',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ),
+      );
+      },
     );
+  }
+
+  void _handleCreate(LocalizationService loc) {
+    final String name = _bagNameController.text.trim();
+    final String notes = _notesController.text.trim();
+
+    if (name.isEmpty || _isSaving) {
+      return;
+    }
+
+    setState(() {
+      _isSaving = true;
+    });
+
+    final bag = Bag(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      name: name,
+      notes: notes.isEmpty ? null : notes,
+      isEmergencyBag: true,
+    );
+
+    context.read<DataService>().addBag(bag);
+
+    FocusScope.of(context).unfocus();
+
+    setState(() {
+      _isSaving = false;
+    });
+
+    final messenger = ScaffoldMessenger.of(context);
+    messenger
+      ..clearSnackBars()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(
+            loc.t('bag.create.success', {'name': bag.name}),
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          backgroundColor: ThemeColors.pastelGreen,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      );
+
+    Navigator.pop(context, bag);
   }
 }

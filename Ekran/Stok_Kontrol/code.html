@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        :root {
+            --pastel-green: #A2E4B8;
+            --pastel-yellow: #F8E4A0;
+            --pastel-red: #F4A8A8;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#121212]">
+<div class="relative flex size-full min-h-screen flex-col bg-[#121212] dark justify-between group/design-root" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+<div class="flex flex-col flex-1">
+<header class="flex items-center p-4 justify-between sticky top-0 bg-[#121212] z-20">
+<h1 class="text-white text-2xl font-bold">Ana Sayfa</h1>
+<button class="text-white">
+<span class="material-symbols-outlined"> notifications </span>
+</button>
+</header>
+<div class="p-4 space-y-4">
+<div class="bg-gradient-to-r from-[var(--pastel-red)] to-red-400 p-4 rounded-xl shadow-lg">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-white text-3xl"> warning </span>
+<div>
+<h2 class="text-white font-bold text-lg">Kritik Uyarılar</h2>
+<p class="text-white text-sm">2 ürünün son kullanma tarihi geçti. <br/> 1 ürünün stoğu tükendi.</p>
+</div>
+</div>
+</div>
+<div class="bg-gradient-to-r from-[var(--pastel-yellow)] to-yellow-400 p-4 rounded-xl shadow-lg">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#333] text-3xl"> hourglass_top </span>
+<div>
+<h2 class="text-[#333] font-bold text-lg">Yaklaşan Son Kullanma Tarihleri</h2>
+<p class="text-[#333] text-sm">3 ürünün son kullanma tarihi 7 gün içinde dolacak.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4">
+<h2 class="text-xl font-bold text-white mb-4">Genel Bakış</h2>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-[#1F1F1F] p-4 rounded-xl text-center">
+<p class="text-3xl font-bold text-white">58</p>
+<p class="text-gray-400 text-sm">Toplam Ürün</p>
+</div>
+<div class="bg-[#1F1F1F] p-4 rounded-xl text-center">
+<p class="text-3xl font-bold text-white">4</p>
+<p class="text-gray-400 text-sm">Acil Durum Çantası</p>
+</div>
+</div>
+</div>
+<div class="p-4">
+<h2 class="text-xl font-bold text-white mb-4">Hızlı Eylemler</h2>
+<div class="flex gap-4 overflow-x-auto">
+<button class="flex flex-col items-center gap-2 text-white bg-[#1F1F1F] p-4 rounded-xl whitespace-nowrap">
+<span class="material-symbols-outlined"> add </span>
+<span>Ürün Ekle</span>
+</button>
+<button class="flex flex-col items-center gap-2 text-white bg-[#1F1F1F] p-4 rounded-xl whitespace-nowrap">
+<span class="material-symbols-outlined"> qr_code_scanner </span>
+<span>Barkod Tara</span>
+</button>
+<button class="flex flex-col items-center gap-2 text-white bg-[#1F1F1F] p-4 rounded-xl whitespace-nowrap">
+<span class="material-symbols-outlined"> inventory_2 </span>
+<span>Stok Yönetimi</span>
+</button>
+</div>
+</div>
+</div>
+<footer class="sticky bottom-0 border-t border-gray-800 bg-[#1F1F1F] py-3">
+<nav class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-gray-400 text-xs" href="#">
+<span class="material-symbols-outlined"> work_outline </span>
+<span class="">Çantalar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 text-xs" href="#">
+<span class="material-symbols-outlined"> inventory_2 </span>
+<span class="">Depo</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 text-xs" href="#">
+<span class="material-symbols-outlined"> list_alt </span>
+<span class="">Ürünler</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 text-xs" href="#">
+<span class="material-symbols-outlined"> grid_view </span>
+<span class="">Kategoriler</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 text-xs" href="#">
+<span class="material-symbols-outlined"> settings </span>
+<span class="">Ayarlar</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--pastel-green)] text-xs font-semibold" href="#">
+<span class="material-symbols-outlined"> info </span>
+<span class="">Bilgi Merkezi</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

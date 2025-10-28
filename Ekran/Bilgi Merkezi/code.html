@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Spline+Sans%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        body {
+            min-height: max(884px, 100dvh);
+        }
+        :root {
+            --pastel-green: #A2E4B8;
+            --pastel-blue: #A2C4E4;
+            --pastel-purple: #C4A2E4;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#121212]">
+<div class="relative flex size-full min-h-screen flex-col bg-[#121212] dark justify-between group/design-root" style='font-family: "Spline Sans", "Noto Sans", sans-serif;'>
+<div class="flex flex-col flex-1">
+<header class="flex items-center p-4 justify-between sticky top-0 bg-[#121212] z-20">
+<h1 class="text-white text-2xl font-bold">Bilgi Merkezi</h1>
+<button class="text-white">
+<span class="material-symbols-outlined"> search </span>
+</button>
+</header>
+<div class="p-4 flex-1">
+<button class="w-full bg-[var(--pastel-green)] text-black font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg mb-6">
+<span class="material-symbols-outlined"> upload_file </span>
+<span>Yeni Dosya Yükle</span>
+</button>
+<div class="space-y-4">
+<div class="bg-[#1F1F1F] p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-[var(--pastel-blue)] p-3 rounded-lg">
+<span class="material-symbols-outlined text-[#1F1F1F]"> description </span>
+</div>
+<div>
+<h3 class="text-white font-semibold">Acil Durum Planı.pdf</h3>
+<p class="text-gray-400 text-sm">PDF Belgesi - 1.2 MB</p>
+</div>
+</div>
+<button class="text-gray-400">
+<span class="material-symbols-outlined"> more_vert </span>
+</button>
+</div>
+<div class="bg-[#1F1F1F] p-4 rounded-xl">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-4">
+<div class="bg-[var(--pastel-purple)] p-3 rounded-lg">
+<span class="material-symbols-outlined text-[#1F1F1F]"> image </span>
+</div>
+<div>
+<h3 class="text-white font-semibold">Ev Önü.jpg</h3>
+<p class="text-gray-400 text-sm">JPEG Resim - 3.4 MB</p>
+</div>
+</div>
+<button class="text-gray-400">
+<span class="material-symbols-outlined"> more_vert </span>
+</button>
+</div>
+<img alt="Ev Önü" class="rounded-lg w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2xB6TF_m0wdedLQI7W6RHBJU6Vy2ptgKNRMXej2NEL1IvhE8CiLLuADl5Q-J-giloFqazzxX1g9h7IdaE8sXwt9Dl1q5pTo_kXiSVP_kQdz0pZZ4yweQEcwsTiTrkHqF8Fc70nxOBgHuq8ciuMeT2zSvMxjLpwyCk-3FDH7B_NfMdQJu3aoGuiECgoI7yT27V9tDleVAUykNh8N402yvJLZApHGYk-P6OIaS6GVyJloGithci2J5HGlKAHo1FpbArdPlaPzi5prVx"/>
+</div>
+<div class="bg-[#1F1F1F] p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-gray-500 p-3 rounded-lg">
+<span class="material-symbols-outlined text-white"> folder_zip </span>
+</div>
+<div>
+<h3 class="text-white font-semibold">Önemli Belgeler.zip</h3>
+<p class="text-gray-400 text-sm">ZIP Arşivi - 15.7 MB</p>
+</div>
+</div>
+<button class="text-gray-400">
+<span class="material-symbols-outlined"> more_vert </span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<footer class="sticky bottom-0 border-t border-gray-800 bg-[#121212] py-2">
+<nav class="flex justify-around">
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined"> home </span>
+<span class="text-xs">Ana Sayfa</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined"> list_alt </span>
+<span class="text-xs">Ürünler</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--pastel-green)]" href="#">
+<span class="material-symbols-outlined"> info </span>
+<span class="text-xs font-semibold">Bilgi Merkezi</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined"> emergency_home </span>
+<span class="text-xs">Acil Durum</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400" href="#">
+<span class="material-symbols-outlined"> settings </span>
+<span class="text-xs">Ayarlar</span>
+</a>
+</nav>
+</footer>
+</div>
+
+</body></html>

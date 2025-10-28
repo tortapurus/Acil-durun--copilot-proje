@@ -1,66 +1,122 @@
-import 'package:hive/hive.dart';
+import '../services/settings_service.dart';
 
-part 'product.g.dart';
+enum StorageLocationType { bag, depot }
 
-@HiveType(typeId: 0)
-class Product extends HiveObject {
-  @HiveField(0)
-  late String id;
+StorageLocationType? storageLocationTypeFromJson(String? value) {
+  if (value == null) return null;
+  for (final type in StorageLocationType.values) {
+    if (type.name == value) {
+      return type;
+    }
+  }
+  return null;
+}
 
-  @HiveField(1)
-  late String ad;
-
-  @HiveField(2)
-  late String kategori;
-
-  @HiveField(3)
-  late DateTime sonKullanmaTarihi;
-
-  @HiveField(4)
-  late DateTime hatirlatmaTarihi;
-
-  @HiveField(5)
-  String? notlar;
-
-  @HiveField(6)
-  String? konum;
-
-  @HiveField(7)
-  String? resimYolu;
-
-  @HiveField(8)
-  bool kontrolEdildi;
+class Product {
+  final String id;
+  final String name;
+  final String categoryId;
+  final DateTime expiryDate;
+  final DateTime reminderDate;
+  final String? notes;
+  final String? location;
+  final String? imagePath;
+  final String? storageId;
+  final StorageLocationType? storageType;
+  final int stock;
+  final bool isChecked;
+  final DateTime createdAt;
 
   Product({
     required this.id,
-    required this.ad,
-    required this.kategori,
-    required this.sonKullanmaTarihi,
-    required this.hatirlatmaTarihi,
-    this.notlar,
-    this.konum,
-    this.resimYolu,
-    this.kontrolEdildi = false,
+    required this.name,
+    required this.categoryId,
+    required this.expiryDate,
+    required this.reminderDate,
+    this.notes,
+    this.location,
+    this.imagePath,
+    this.storageId,
+    this.storageType,
+    this.stock = 1,
+    this.isChecked = false,
+    required this.createdAt,
   });
 
-  // Kalan gün hesaplama
-  int get kalanGun {
-    final now = DateTime.now();
-    final difference = sonKullanmaTarihi.difference(now);
-    return difference.inDays;
+  bool get isExpired => DateTime.now().isAfter(expiryDate);
+
+  int get daysRemaining => expiryDate.difference(DateTime.now()).inDays;
+
+  bool get isExpiringsSoon {
+    final threshold = SettingsService.instance.expiryWarningDays;
+    return daysRemaining > 0 && daysRemaining <= threshold;
   }
 
-  // Durum (yeşil, sarı, kırmızı)
-  ProductStatus get durum {
-    final kalan = kalanGun;
-    if (kalan <= 0) return ProductStatus.suresiDolmus;
-    if (kalan <= 7) return ProductStatus.yakindaBitecek;
-    return ProductStatus.guvenli;
+  Product copyWith({
+    String? id,
+    String? name,
+    String? categoryId,
+    DateTime? expiryDate,
+    DateTime? reminderDate,
+    String? notes,
+    String? location,
+    String? imagePath,
+    String? storageId,
+    StorageLocationType? storageType,
+    int? stock,
+    bool? isChecked,
+    DateTime? createdAt,
+  }) {
+    return Product(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      categoryId: categoryId ?? this.categoryId,
+      expiryDate: expiryDate ?? this.expiryDate,
+      reminderDate: reminderDate ?? this.reminderDate,
+      notes: notes ?? this.notes,
+      location: location ?? this.location,
+      imagePath: imagePath ?? this.imagePath,
+      storageId: storageId ?? this.storageId,
+      storageType: storageType ?? this.storageType,
+      stock: stock ?? this.stock,
+      isChecked: isChecked ?? this.isChecked,
+      createdAt: createdAt ?? this.createdAt,
+    );
   }
-}
 
-enum ProductStatus {
-  guvenli,      // >7 gün - yeşil
-  yakindaBitecek, // 1-7 gün - sarı
-  suresiDolmus,   // ≤0 gün - kırmızı
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'categoryId': categoryId,
+      'expiryDate': expiryDate.toIso8601String(),
+      'reminderDate': reminderDate.toIso8601String(),
+      'notes': notes,
+      'location': location,
+      'imagePath': imagePath,
+      'storageId': storageId,
+      'storageType': storageType?.name,
+      'stock': stock,
+      'isChecked': isChecked,
+      'createdAt': createdAt.toIso8601String(),
+    };
+  }
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      id: json['id'],
+      name: json['name'],
+      categoryId: json['categoryId'] ?? json['category'],
+      expiryDate: DateTime.parse(json['expiryDate']),
+      reminderDate: DateTime.parse(json['reminderDate']),
+      notes: json['notes'],
+      location: json['location'],
+      imagePath: json['imagePath'],
+      storageId: json['storageId'],
+      storageType: storageLocationTypeFromJson(json['storageType'] as String?),
+      stock: json['stock'] ?? 1,
+      isChecked: json['isChecked'] ?? false,
+      createdAt: DateTime.parse(json['createdAt']),
+    );
+  }
 }
