@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/product.dart';
-import '../models/category.dart';
 import '../services/data_service.dart';
 import '../services/localization_service.dart';
 import '../services/settings_service.dart';
@@ -127,27 +126,6 @@ class _UrunListesiState extends State<UrunListesi> {
                       final category = categories[index];
                       final bool isSelected = category.id == _selectedCategoryId;
                       return ListTile(
-                        leading: category.iconPath != null
-                            ? Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: ThemeColors.bg2,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(6.0),
-                                  child: Image.asset(
-                                    category.iconPath!,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (_, __, ___) => const Icon(
-                                      Icons.inventory_2_outlined,
-                                      color: ThemeColors.textGrey,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : null,
                         title: Text(
                           data.resolveCategoryLabel(category.id, loc),
                           style: const TextStyle(color: ThemeColors.textWhite),
@@ -485,7 +463,6 @@ class _UrunListesiState extends State<UrunListesi> {
                             return _ProductCard(
                               product: product,
                               loc: loc,
-                              data: data,
                               categoryLabel: categoryLabel,
                               showImages: settings.showProductImages,
                               palette: colors,
@@ -517,7 +494,6 @@ class _ProductCard extends StatelessWidget {
     required this.categoryLabel,
     required this.showImages,
     required this.palette,
-    required this.data,
     this.onTap,
   });
 
@@ -526,7 +502,6 @@ class _ProductCard extends StatelessWidget {
   final String categoryLabel;
   final bool showImages;
   final AppThemeColors palette;
-  final DataService data;
   final VoidCallback? onTap;
 
   @override
@@ -548,7 +523,6 @@ class _ProductCard extends StatelessWidget {
     }
 
     final String? imagePath = product.imagePath;
-  final Category? category = data.findCategoryById(product.categoryId);
 
     return GestureDetector(
       onTap: onTap,
@@ -581,32 +555,12 @@ class _ProductCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      if (category?.iconPath != null)...[
-                        Container(
-                          width: 20,
-                          height: 20,
-                          margin: const EdgeInsets.only(right: 8),
-                          child: Image.asset(
-                            category!.iconPath!,
-                            fit: BoxFit.contain,
-                            errorBuilder: (_, __, ___) => const Icon(
-                              Icons.inventory_2_outlined,
-                              color: ThemeColors.textGrey,
-                              size: 18,
-                            ),
-                          ),
-                        ),
-                      ],
-                      Text(
-                        categoryLabel,
-                        style: const TextStyle(
-                          color: ThemeColors.textGrey,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    categoryLabel,
+                    style: const TextStyle(
+                      color: ThemeColors.textGrey,
+                      fontSize: 13,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   if (badges.isNotEmpty)
