@@ -117,15 +117,23 @@ class AcilDurumPaneli extends StatelessWidget {
 
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 12),
-                          child: _StatusCard(
-                            title: bag.name,
-                            subtitle: loc.t('items.count', {
-                              'count': totalCount.toString(),
-                            }),
-                            chips: chips,
-                            details: details,
-                            accent: accentColor,
-                            icon: Icons.backpack_outlined,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(16),
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              '/canta-detay',
+                              arguments: {'bagId': bag.id},
+                            ),
+                            child: _StatusCard(
+                              title: bag.name,
+                              subtitle: loc.t('items.count', {
+                                'count': totalCount.toString(),
+                              }),
+                              chips: chips,
+                              details: details,
+                              accent: accentColor,
+                              icon: Icons.backpack_outlined,
+                            ),
                           ),
                         );
                       }).toList(),

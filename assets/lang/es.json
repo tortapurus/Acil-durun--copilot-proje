@@ -49,9 +49,7 @@
   "categories.fixed.handgun_ammo": "Munición de pistola",
   "categories.fixed.rifle": "Rifle",
   "categories.fixed.rifle_ammo": "Munición de rifle",
-  "categories.fixed.slug_rounds": "Balas slug",
-  "categories.fixed.shot_shells": "Cartuchos de escopeta",
-  "categories.fixed.lead_free_ammo": "Munición sin plomo",
+  
   "add.item": "Agregar Artículo",
   "category": "Categoría",
   "expiry.date": "Fecha de Vencimiento / Revisión",

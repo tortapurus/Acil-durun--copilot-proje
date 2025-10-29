@@ -52,9 +52,7 @@
   "categories.fixed.handgun_ammo": "Tabanca Mermisi",
   "categories.fixed.rifle": "Tüfek",
   "categories.fixed.rifle_ammo": "Tüfek Mermisi",
-  "categories.fixed.slug_rounds": "Slug Mermileri",
-  "categories.fixed.shot_shells": "Saçma Mermileri",
-  "categories.fixed.lead_free_ammo": "Kurşunsuz Mermiler",
+  
   "categories.addNew": "Yeni Kategori Ekle",
   "newProduct.pageTitle": "Yeni Ürün",
   "newProduct.name.label": "Ürün Adı",

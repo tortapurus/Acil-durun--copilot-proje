@@ -190,21 +190,7 @@ class Category {
       name: 'Tüfek Mermisi',
       translationKey: 'categories.fixed.rifle_ammo',
     ),
-    Category(
-      id: 'slug_rounds',
-      name: 'Slug mermiler',
-      translationKey: 'categories.fixed.slug_rounds',
-    ),
-    Category(
-      id: 'shot_shells',
-      name: 'Saçma mermiler',
-      translationKey: 'categories.fixed.shot_shells',
-    ),
-    Category(
-      id: 'lead_free_ammo',
-      name: 'Kurşunsuz mermiler',
-      translationKey: 'categories.fixed.lead_free_ammo',
-    ),
+    // Removed ammo subcategories (slug/shot/lead-free) per product policy request.
   ];
 
   static List<Category> get fixedCategories =>

@@ -13,6 +13,7 @@ import 'screens/urun_detay.dart';
 import 'screens/bilgi_merkezi.dart';
 import 'screens/depo_paneli.dart';
 import 'screens/depo_detay.dart';
+import 'screens/canta_detay.dart';
 import 'screens/barkod_tara.dart';
 import 'screens/yeni_canta_olustur.dart';
 import 'screens/ayarlar_ekrani.dart';
@@ -134,6 +135,16 @@ class _MyAppState extends State<MyApp> {
                   depotId = args['depotId'] as String?;
                 }
                 return DepoDetay(depotId: depotId);
+              },
+              '/canta-detay': (context) {
+                final args = ModalRoute.of(context)?.settings.arguments;
+                String? bagId;
+                if (args is String) {
+                  bagId = args;
+                } else if (args is Map<String, dynamic>) {
+                  bagId = args['bagId'] as String?;
+                }
+                return CantaDetay(bagId: bagId);
               },
               '/barkod-tara': (context) => const BarkodTaraEkrani(),
               '/urunler': (context) => const UrunListesi(),

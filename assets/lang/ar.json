@@ -49,9 +49,7 @@
   "categories.fixed.handgun_ammo": "ذخيرة مسدس",
   "categories.fixed.rifle": "بندقية",
   "categories.fixed.rifle_ammo": "ذخيرة بندقية",
-  "categories.fixed.slug_rounds": "طلقات سلق",
-  "categories.fixed.shot_shells": "خراطيش بندقية صيد",
-  "categories.fixed.lead_free_ammo": "ذخيرة خالية من الرصاص",
+  
   "add.item": "إضافة عنصر",
   "category": "الفئة",
   "expiry.date": "تاريخ انتهاء الصلاحية / المراجعة",

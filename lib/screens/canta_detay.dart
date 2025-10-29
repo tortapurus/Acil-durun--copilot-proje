@@ -8,26 +8,26 @@ import '../services/data_service.dart';
 import '../services/localization_service.dart';
 import '../theme/theme_colors.dart';
 
-class DepoDetay extends StatelessWidget {
-  const DepoDetay({super.key, required this.depotId});
+class CantaDetay extends StatelessWidget {
+  const CantaDetay({super.key, required this.bagId});
 
-  final String? depotId;
+  final String? bagId;
 
   @override
   Widget build(BuildContext context) {
     final loc = context.watch<LocalizationService>();
     final data = context.watch<DataService>();
 
-  final depot = depotId == null ? null : data.getDepotById(depotId!);
-  final List<Product> products = depotId == null ? [] : data.getProductsInDepot(depotId!);
-  final String? notes = depot?.notes;
+    final bag = bagId == null ? null : data.getBagById(bagId!);
+    final List<Product> products = bagId == null ? [] : data.getProductsInBag(bagId!);
+    final String? notes = bag?.notes;
 
     return Scaffold(
       backgroundColor: ThemeColors.bg1,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(depot?.name ?? loc.t('depot.panel')),
+        title: Text(bag?.name ?? loc.t('bags.title')),
       ),
       body: SafeArea(
         child: Padding(
@@ -83,8 +83,7 @@ class DepoDetay extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  // Product image (left) — keep transparent background so
-                                  // no colored edge appears around the image
+                                  // Product image (left)
                                   Container(
                                     width: 48,
                                     height: 48,

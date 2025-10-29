@@ -52,9 +52,7 @@
   "categories.fixed.handgun_ammo": "Handgun Ammunition",
   "categories.fixed.rifle": "Rifle",
   "categories.fixed.rifle_ammo": "Rifle Ammunition",
-  "categories.fixed.slug_rounds": "Slug Rounds",
-  "categories.fixed.shot_shells": "Shotgun Shells",
-  "categories.fixed.lead_free_ammo": "Lead-Free Ammunition",
+  
   "categories.addNew": "Add New Category",
   "newProduct.pageTitle": "Add New Product",
   "newProduct.name.label": "Product Name",

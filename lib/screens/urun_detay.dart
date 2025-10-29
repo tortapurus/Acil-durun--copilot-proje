@@ -296,7 +296,7 @@ class _ProductHero extends StatelessWidget {
       if (imagePath!.startsWith('http')) {
         image = Image.network(
           imagePath!,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
           errorBuilder: (_, __, ___) => const _ImagePlaceholder(),
         );
       } else {
@@ -304,7 +304,7 @@ class _ProductHero extends StatelessWidget {
         if (file.existsSync()) {
           image = Image.file(
             file,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             errorBuilder: (_, __, ___) => const _ImagePlaceholder(),
           );
         }
@@ -313,18 +313,20 @@ class _ProductHero extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
-      height: 200,
+      height: 260,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        gradient: const LinearGradient(
-          colors: [Color(0xFF7DD3C0), Color(0xFF5BA897)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: Colors.transparent,
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: image ?? const _ImagePlaceholder(),
+        child: Center(
+          child: SizedBox(
+            height: 200,
+            width: double.infinity,
+            child: image ?? const _ImagePlaceholder(),
+          ),
+        ),
       ),
     );
   }
