@@ -96,22 +96,22 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
                     onTap: () => Navigator.pushNamed(context, '/yonetim-paneli'),
                   ),
                   _buildArrowTile(
-                    'Örnek Verileri Yükle',
+                    loc.t('settings.load_sample_data'),
                     onTap: () async {
                       await _loadSampleData();
                       if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Örnek veriler yüklendi')),
+                        SnackBar(content: Text(loc.t('settings.sample_data_loaded'))),
                       );
                     },
                   ),
                   _buildArrowTile(
-                    'Örnek Verileri Temizle',
+                    loc.t('settings.clear_sample_data'),
                     onTap: () async {
                       await _clearSampleData();
                       if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Veriler temizlendi')),
+                        SnackBar(content: Text(loc.t('settings.sample_data_cleared'))),
                       );
                     },
                   ),
