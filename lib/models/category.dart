@@ -3,12 +3,14 @@ class Category {
   final String name;
   final bool isCustom;
   final String? translationKey;
+  final String? iconPath;
 
   const Category({
     required this.id,
     required this.name,
     this.isCustom = false,
     this.translationKey,
+    this.iconPath,
   });
 
   Category copyWith({
@@ -16,12 +18,14 @@ class Category {
     String? name,
     bool? isCustom,
     String? translationKey,
+    String? iconPath,
   }) {
     return Category(
       id: id ?? this.id,
       name: name ?? this.name,
       isCustom: isCustom ?? this.isCustom,
       translationKey: translationKey ?? this.translationKey,
+      iconPath: iconPath ?? this.iconPath,
     );
   }
 
@@ -31,6 +35,7 @@ class Category {
       'name': name,
       'isCustom': isCustom,
       'translationKey': translationKey,
+      'iconPath': iconPath,
     };
   }
 
@@ -40,25 +45,34 @@ class Category {
       name: json['name'],
       isCustom: json['isCustom'] ?? false,
       translationKey: json['translationKey'],
+      iconPath: json['iconPath'],
     );
   }
 
   static const List<Category> _fixedCategories = [
-    Category(id: 'water', name: 'Su', translationKey: 'categories.fixed.water'),
+    Category(
+      id: 'water',
+      name: 'Su',
+      translationKey: 'categories.fixed.water',
+      iconPath: 'assets/icons/icon.png',
+    ),
     Category(
       id: 'canned_food',
       name: 'Konserve',
       translationKey: 'categories.fixed.canned_food',
+      iconPath: 'assets/icons/icon.png',
     ),
     Category(
       id: 'nuts',
       name: 'Kuru Yemiş',
       translationKey: 'categories.fixed.nuts',
+      iconPath: 'assets/icons/icon.png',
     ),
     Category(
       id: 'food',
       name: 'Yiyecek',
       translationKey: 'categories.fixed.food',
+      iconPath: 'assets/icons/icon.png',
     ),
     Category(
       id: 'first_aid_kit',

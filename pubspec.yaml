@@ -84,6 +84,7 @@ flutter:
     - assets/lang/so.json
     - assets/lang/zh.json
     - assets/lang/ru.json
+  - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
