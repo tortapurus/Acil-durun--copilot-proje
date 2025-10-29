@@ -23,7 +23,7 @@ lib/
 ├── screens/                     # 7 main screens + settings
 ├── widgets/
 │   └── app_bottom_navigation.dart # Shared navigation component
-├── models/                      # Product, Bag, Category data models
+├── models/                      # Product, Bag, Category SA models
 ├── services/                    # DataService, NotificationService
 └── theme/
     └── theme_colors.dart        # Centralized color definitions
