@@ -159,9 +159,9 @@ class DepoPaneli extends StatelessWidget {
                   controller: nameController,
                   style: const TextStyle(color: ThemeColors.textWhite),
                   decoration: InputDecoration(
-                    labelText: loc.t('bag.create.name'),
+                    labelText: loc.t('depot.create.name'),
                     labelStyle: const TextStyle(color: ThemeColors.textGrey),
-                    hintText: loc.t('bag.create.name_placeholder'),
+                    hintText: loc.t('depot.create.name_placeholder'),
                     hintStyle: const TextStyle(color: ThemeColors.textGrey),
                   ),
                   validator: (value) {
@@ -180,9 +180,9 @@ class DepoPaneli extends StatelessWidget {
                   controller: notesController,
                   style: const TextStyle(color: ThemeColors.textWhite),
                   decoration: InputDecoration(
-                    labelText: loc.t('bag.create.notes'),
+                    labelText: loc.t('depot.create.notes'),
                     labelStyle: const TextStyle(color: ThemeColors.textGrey),
-                    hintText: loc.t('bag.create.notes_placeholder'),
+                    hintText: loc.t('depot.create.notes_placeholder'),
                     hintStyle: const TextStyle(color: ThemeColors.textGrey),
                   ),
                   maxLines: 3,
@@ -210,7 +210,7 @@ class DepoPaneli extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            depot.name,
+                            loc.t('depot.create.success', {'name': depot.name}),
                             style: const TextStyle(color: ThemeColors.textWhite),
                           ),
                           backgroundColor: ThemeColors.bg3,
@@ -774,36 +774,38 @@ class _ActionButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(18),
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
         decoration: BoxDecoration(
           color: ThemeColors.bgCard,
           borderRadius: BorderRadius.circular(18),
         ),
-        child: Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: color.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(14),
               ),
               child: Icon(
                 icon,
                 color: color,
+                size: 24,
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                label,
-                style: const TextStyle(
-                  color: ThemeColors.textWhite,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                ),
-                maxLines: 2,
+            const SizedBox(height: 12),
+            Text(
+              label,
+              style: const TextStyle(
+                color: ThemeColors.textWhite,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
               ),
+              maxLines: 2,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

@@ -38,7 +38,8 @@ class AcilDurumPaneli extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          loc.t('emergencyPanel.header'),
+                          // Use the bags title as top header per request
+                          loc.t('bags.title'),
                           style: const TextStyle(
                             color: ThemeColors.textWhite,
                             fontSize: 24,
@@ -128,61 +129,10 @@ class AcilDurumPaneli extends StatelessWidget {
                         );
                       }).toList(),
                     ),
-                  const SizedBox(height: 32),
-                  _SectionHeader(
-                    title: loc.t('depot.panel'),
-                    trailing: IconButton(
-                      tooltip: loc.t('depot.create.button'),
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        '/depo',
-                      ),
-                      icon: const Icon(
-                        Icons.add_circle_outline,
-                        color: ThemeColors.pastelGreen,
-                        size: 22,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Builder(
-                    builder: (_) {
-                      final int totalProducts = data.totalProductCount;
-                      final int expiredCount = data.expiredProductCount;
-                      final int expiringCount = data.expiringProductCount;
-                      final int outOfStockCount = data.outOfStockProductCount;
-
-                      final chips = _buildStatusChips(
-                        loc,
-                        expiredCount: expiredCount,
-                        expiringCount: expiringCount,
-                        missingCount: outOfStockCount,
-                      );
-
-                      final Color accentColor = _resolveAccent(chips);
-
-                      final List<String> details = [
-                        if (expiredCount > 0)
-                          '${loc.t('status.expired')}: $expiredCount',
-                        if (expiringCount > 0)
-                          '${loc.t('status.expiry_approaching')}: $expiringCount',
-                        if (outOfStockCount > 0)
-                          '${loc.t('home.stats.outOfStock')}: $outOfStockCount',
-                      ];
-
-                      return _StatusCard(
-                        title: loc.t('depot.main'),
-                        subtitle: loc.t(
-                          'items.count',
-                          {'count': totalProducts.toString()},
-                        ),
-                        chips: chips,
-                        details: details,
-                        accent: accentColor,
-                        icon: Icons.warehouse_outlined,
-                      );
-                    },
-                  ),
+                  // Depot (depo) section intentionally removed from Bags screen per request.
+                  // The Depot screen remains available at its own route and still uses
+                  // the localization key 'depot.panel'. We remove the summary/status
+                  // block here to keep the Bags screen focused on bags only.
                 ],
               ),
             ),

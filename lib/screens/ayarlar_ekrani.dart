@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -375,16 +377,110 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
 
     try {
       final snapshot = dataService.exportSnapshot();
-      final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/acil_durum_yedek.json');
+      final String defaultFileName =
+          'acil_durum_yedek_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.json';
+
+      String? savePath;
+
+      // Try to let the user pick a directory on platforms that support it (Android).
+      try {
+        final String? directoryPath = await FilePicker.platform.getDirectoryPath(
+          dialogTitle: loc.t('settings.backup_save_title'),
+        );
+        if (directoryPath != null && directoryPath.isNotEmpty) {
+          savePath = '$directoryPath${Platform.pathSeparator}$defaultFileName';
+        }
+      } catch (e) {
+        // Some platforms (e.g. iOS) or older plugin versions may not implement getDirectoryPath.
+        savePath = null;
+      }
+
+      // If directory picker wasn't available or user cancelled, fall back to a save-file dialog
+      // (desktop) or the app documents directory (mobile).
+      if (savePath == null) {
+        if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+          final String? picked = await FilePicker.platform.saveFile(
+            dialogTitle: loc.t('settings.backup_save_title'),
+            fileName: defaultFileName,
+            type: FileType.custom,
+            allowedExtensions: const ['json'],
+          );
+          savePath = picked;
+        } else {
+          // Mobile fallback: write to app documents directory
+          final directory = await getApplicationDocumentsDirectory();
+          savePath = '${directory.path}${Platform.pathSeparator}$defaultFileName';
+        }
+      }
+
+      if (savePath == null) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(loc.t('settings.backup_cancelled'))),
+        );
+        return;
+      }
+
+      final file = File(savePath);
       final encoded = jsonEncode(snapshot);
-      await file.writeAsString(encoded, flush: true);
+
+      // Try writing; if it fails (e.g. platform path is a content URI or permission denied),
+      // fall back to a save-file dialog (desktop) or the app documents directory.
+      try {
+        await file.writeAsString(encoded, flush: true);
+      } catch (e) {
+        // Attempt alternative save methods
+        bool saved = false;
+        try {
+          // Desktop: try saveFile dialog
+          if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+            final String? picked = await FilePicker.platform.saveFile(
+              dialogTitle: loc.t('settings.backup_save_title'),
+              fileName: defaultFileName,
+              type: FileType.custom,
+              allowedExtensions: const ['json'],
+            );
+            if (picked != null) {
+              final f = File(picked);
+              await f.writeAsString(encoded, flush: true);
+              savePath = picked;
+              saved = true;
+            }
+          } else {
+            // Mobile: fallback to app documents directory
+            final directory = await getApplicationDocumentsDirectory();
+            final fallback = '${directory.path}${Platform.pathSeparator}$defaultFileName';
+            final f = File(fallback);
+            await f.writeAsString(encoded, flush: true);
+            savePath = fallback;
+            saved = true;
+          }
+        } catch (e2) {
+          // both attempts failed
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('${loc.t('settings.backup_error')} (${e.toString()}; ${e2.toString()})'),
+            ),
+          );
+          return;
+        }
+
+        if (!saved) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(loc.t('settings.backup_cancelled'))),
+          );
+          return;
+        }
+      }
 
       if (!mounted) {
         return;
       }
 
-      final fileName = file.uri.pathSegments.isNotEmpty ? file.uri.pathSegments.last : 'acil_durum_yedek.json';
+  final segments = savePath.split(RegExp(r'[\\/]'));
+  final fileName = segments.isNotEmpty ? segments.last : defaultFileName;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -408,24 +504,70 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
 
   Future<void> _handleRestore(LocalizationService loc) async {
     try {
-      final directory = await getApplicationDocumentsDirectory();
-      final file = File('${directory.path}/acil_durum_yedek.json');
+      final FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: const ['json'],
+      );
 
-      if (!await file.exists()) {
+      if (result == null || result.files.isEmpty) {
         if (!mounted) {
           return;
         }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(loc.t('settings.restore_missing')),
+            content: Text(loc.t('settings.restore_cancelled')),
           ),
         );
         return;
       }
 
-      final content = await file.readAsString();
-      final Map<String, dynamic> snapshot = jsonDecode(content) as Map<String, dynamic>;
-      await DataService.instance.importSnapshot(snapshot);
+    final PlatformFile fileInfo = result.files.first;
+
+      final String? path = fileInfo.path;
+      final String content;
+
+      if (path != null) {
+        final file = File(path);
+        if (!await file.exists()) {
+          if (!mounted) {
+            return;
+          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(loc.t('settings.restore_invalid')),
+            ),
+          );
+          return;
+        }
+        content = await file.readAsString();
+      } else if (fileInfo.bytes != null) {
+        content = utf8.decode(fileInfo.bytes!);
+      } else {
+        if (!mounted) {
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(loc.t('settings.restore_invalid')),
+          ),
+        );
+        return;
+      }
+
+      final dynamic decoded = jsonDecode(content);
+      if (decoded is! Map<String, dynamic>) {
+        if (!mounted) {
+          return;
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(loc.t('settings.restore_invalid')),
+          ),
+        );
+        return;
+      }
+
+      await DataService.instance.importSnapshot(Map<String, dynamic>.from(decoded));
 
       if (!mounted) {
         return;
