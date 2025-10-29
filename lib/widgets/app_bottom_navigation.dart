@@ -40,6 +40,7 @@ class AppBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<LocalizationService>(
       builder: (context, loc, _) {
+        // Order adjusted: info moved before settings, settings placed to the far right
         final navItems = <_NavConfig>[
           _NavConfig(
             item: AppNavItem.home,
@@ -65,17 +66,18 @@ class AppBottomNavigation extends StatelessWidget {
             labelKey: 'nav.products',
             route: '/urunler',
           ),
-          _NavConfig(
-            item: AppNavItem.settings,
-            icon: Icons.settings_outlined,
-            labelKey: 'nav.settings',
-            route: '/ayarlar',
-          ),
+          // swap: show info before settings so settings becomes the last item
           _NavConfig(
             item: AppNavItem.info,
             icon: Icons.info_outline,
             labelKey: 'nav.info',
             route: '/bilgi',
+          ),
+          _NavConfig(
+            item: AppNavItem.settings,
+            icon: Icons.settings_outlined,
+            labelKey: 'nav.settings',
+            route: '/ayarlar',
           ),
         ];
 

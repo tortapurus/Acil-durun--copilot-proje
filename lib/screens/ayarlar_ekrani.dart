@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import '../services/data_service.dart';
 import '../services/localization_service.dart';
 import '../services/settings_service.dart';
+import '../models/product.dart';
+import '../models/bag.dart';
+import '../models/depot.dart';
 import '../theme/theme_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_bottom_navigation.dart';
@@ -91,6 +94,26 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
                   _buildArrowTile(
                     loc.t('settings.manage_categories'),
                     onTap: () => Navigator.pushNamed(context, '/yonetim-paneli'),
+                  ),
+                  _buildArrowTile(
+                    'Örnek Verileri Yükle',
+                    onTap: () async {
+                      await _loadSampleData();
+                      if (!mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Örnek veriler yüklendi')),
+                      );
+                    },
+                  ),
+                  _buildArrowTile(
+                    'Örnek Verileri Temizle',
+                    onTap: () async {
+                      await _clearSampleData();
+                      if (!mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Veriler temizlendi')),
+                      );
+                    },
                   ),
                 ], colors),
                 
@@ -588,5 +611,74 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
         ),
       );
     }
+  }
+
+  Future<void> _loadSampleData() async {
+    final dataService = DataService.instance;
+
+    // create sample depot
+    final depotId = 'depot_${DateTime.now().microsecondsSinceEpoch}';
+    final depot = Depot(id: depotId, name: 'Örnek Depo 1', notes: 'Otomatik oluşturulmuş örnek depo');
+    dataService.addDepot(depot);
+
+    // create sample bags
+    final bag1Id = 'bag_${DateTime.now().microsecondsSinceEpoch}_a';
+    final bag2Id = 'bag_${DateTime.now().microsecondsSinceEpoch}_b';
+    final bag1 = Bag(id: bag1Id, name: 'Örnek Çanta 1', notes: 'İçinde temel malzemeler bulunur');
+    final bag2 = Bag(id: bag2Id, name: 'Örnek Çanta 2', notes: 'İkinci örnek çanta');
+    dataService.addBag(bag1);
+    dataService.addBag(bag2);
+
+    // create some sample products and attach to bag/depot
+    final now = DateTime.now();
+    final p1 = Product(
+      id: 'prod_${now.microsecondsSinceEpoch}_1',
+      name: 'Şişelenmiş Su',
+      categoryId: 'water',
+      expiryDate: now.add(const Duration(days: 365)),
+      reminderDate: now.add(const Duration(days: 330)),
+      storageId: bag1Id,
+      storageType: StorageLocationType.bag,
+      createdAt: now,
+    );
+
+    final p2 = Product(
+      id: 'prod_${now.microsecondsSinceEpoch}_2',
+      name: 'Konserve Ton Balığı',
+      categoryId: 'canned_food',
+      expiryDate: now.add(const Duration(days: 720)),
+      reminderDate: now.add(const Duration(days: 700)),
+      storageId: depotId,
+      storageType: StorageLocationType.depot,
+      createdAt: now,
+    );
+
+    final p3 = Product(
+      id: 'prod_${now.microsecondsSinceEpoch}_3',
+      name: 'İlk Yardım Seti (Örnek)',
+      categoryId: 'first_aid_kit',
+      expiryDate: now.add(const Duration(days: 400)),
+      reminderDate: now.add(const Duration(days: 360)),
+      storageId: bag2Id,
+      storageType: StorageLocationType.bag,
+      createdAt: now,
+    );
+
+    dataService.addProduct(p1);
+    dataService.addProduct(p2);
+    dataService.addProduct(p3);
+  }
+
+  Future<void> _clearSampleData() async {
+    final snapshot = {
+      'version': 1,
+      'generatedAt': DateTime.now().toIso8601String(),
+      'products': <dynamic>[],
+      'bags': <dynamic>[],
+      'depots': <dynamic>[],
+      'customCategories': <dynamic>[],
+    };
+
+    await DataService.instance.importSnapshot(snapshot);
   }
 }
