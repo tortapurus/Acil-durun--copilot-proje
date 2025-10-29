@@ -52,7 +52,16 @@ class SampleDataPreview extends StatelessWidget {
             ...data.products.map((p) => Card(
                   color: ThemeColors.bgCard,
                   child: ListTile(
-                    leading: p.imagePath != null ? Image.asset(p.imagePath!, width: 44, height: 44, fit: BoxFit.cover) : null,
+          leading: p.imagePath != null
+            ? (p.imagePath!.startsWith('data:image')
+              ? Image.memory(
+                Uri.parse(p.imagePath!).data!.contentAsBytes(),
+                width: 44,
+                height: 44,
+                fit: BoxFit.cover,
+                )
+              : Image.asset(p.imagePath!, width: 44, height: 44, fit: BoxFit.cover))
+            : null,
                     title: Text(p.name, style: const TextStyle(color: ThemeColors.textWhite)),
                     subtitle: Text('${p.stock} adet • ${p.daysRemaining} gün', style: const TextStyle(color: ThemeColors.textGrey)),
                   ),

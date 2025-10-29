@@ -654,16 +654,25 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
     dataService.addCustomCategory(Category(id: 'pets', name: 'Evcil Hayvan', isCustom: true));
 
     // Products with varied stock, SKT ve reminder date variations; reuse existing asset icon path where available
-    final img = 'assets/icons/icon.png';
+  // small colored 1x1 PNGs encoded as data URIs (used only for preview/sample)
+    const redPx = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgAAAAAgAB9HFkPgAAAABJRU5ErkJggg==';
+    const greenPx = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgAAAAAgAB9HFkPgAAAABJRU5ErkJggg==';
+    const bluePx = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgAAAAAgAB9HFkPgAAAABJRU5ErkJggg==';
+
+    final images = [redPx, greenPx, bluePx];
+    int _imgIdx = 0;
 
     void addProd(String idSuffix, String name, String categoryId, int daysToExpiry, int reminderOffsetDays, int stock, String? storageId, StorageLocationType storageType) {
+      final imageData = images[_imgIdx % images.length];
+      _imgIdx++;
+
       final p = Product(
         id: 'prod_${now.microsecondsSinceEpoch}_$idSuffix',
         name: name,
         categoryId: categoryId,
         expiryDate: now.add(Duration(days: daysToExpiry)),
         reminderDate: now.add(Duration(days: reminderOffsetDays)),
-        imagePath: img,
+        imagePath: imageData,
         storageId: storageId,
         storageType: storageType,
         stock: stock,
@@ -671,17 +680,15 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
       );
       dataService.addProduct(p);
     }
-
-    addProd('1', 'Büyük Su Şişesi (1.5L)', 'water', 365, 330, 12, bag1Id, StorageLocationType.bag);
-    addProd('2', 'Konserve Ton Balığı', 'canned_food', 720, 700, 8, depotId1, StorageLocationType.depot);
-    addProd('3', 'İlk Yardım Seti', 'first_aid_kit', 400, 360, 2, bag2Id, StorageLocationType.bag);
-    addProd('4', 'Bebek Bezi', 'baby', 540, 520, 16, bag1Id, StorageLocationType.bag);
-    addProd('5', 'Enerji Barı', 'food', 180, 150, 0, bag3Id, StorageLocationType.bag); // out of stock
-    addProd('6', 'Pilli Radyo', 'battery_radio', 1095, 1000, 1, depotId2, StorageLocationType.depot);
-    addProd('7', 'Yara Bandı (paket)', 'first_aid_kit', 200, 170, 5, bag2Id, StorageLocationType.bag);
-    addProd('8', 'Evcil Hayvan Maması (konserve)', 'pets', 400, 360, 6, depotId1, StorageLocationType.depot);
-    addProd('9', 'Islak Mendil', 'wet_wipes', 120, 90, 30, bag1Id, StorageLocationType.bag);
-    addProd('10', 'Düdük', 'multi_tool', 3650, 3600, 3, bag3Id, StorageLocationType.bag);
+  addProd('2', 'Konserve Ton Balığı', 'canned_food', 720, 700, 8, depotId1, StorageLocationType.depot);
+  addProd('3', 'İlk Yardım Seti', 'first_aid_kit', 400, 360, 2, bag2Id, StorageLocationType.bag);
+  addProd('4', 'Bebek Bezi', 'baby', 540, 520, 16, bag1Id, StorageLocationType.bag);
+  addProd('5', 'Enerji Barı', 'food', 180, 150, 0, bag3Id, StorageLocationType.bag); // out of stock
+  addProd('6', 'Pilli Radyo', 'battery_radio', 1095, 1000, 1, depotId2, StorageLocationType.depot);
+  addProd('7', 'Yara Bandı (paket)', 'first_aid_kit', 200, 170, 5, bag2Id, StorageLocationType.bag);
+  addProd('8', 'Evcil Hayvan Maması (konserve)', 'pets', 400, 360, 6, depotId1, StorageLocationType.depot);
+  addProd('9', 'Islak Mendil', 'wet_wipes', 120, 90, 30, bag1Id, StorageLocationType.bag);
+  addProd('10', 'Düdük', 'multi_tool', 3650, 3600, 3, bag3Id, StorageLocationType.bag);
   }
 
   Future<void> _clearSampleData() async {
