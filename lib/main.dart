@@ -21,6 +21,7 @@ import 'screens/language_selection_screen.dart';
 import 'screens/acil_durum_numaralari.dart';
 import 'screens/yonetim_paneli.dart';
 import 'screens/uygulama_bilgileri_ekrani.dart';
+import 'screens/sample_data_preview.dart';
 import 'theme/theme_colors.dart';
 import 'services/localization_service.dart';
 import 'services/data_service.dart';
@@ -148,6 +149,7 @@ class _MyAppState extends State<MyApp> {
               },
               '/barkod-tara': (context) => const BarkodTaraEkrani(),
               '/urunler': (context) => const UrunListesi(),
+              '/sample-preview': (context) => const SampleDataPreview(),
               '/yeni-urun': (context) {
                 final args = ModalRoute.of(context)?.settings.arguments;
 

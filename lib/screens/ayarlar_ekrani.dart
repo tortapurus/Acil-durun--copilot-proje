@@ -13,6 +13,7 @@ import '../services/settings_service.dart';
 import '../models/product.dart';
 import '../models/bag.dart';
 import '../models/depot.dart';
+import '../models/category.dart';
 import '../theme/theme_colors.dart';
 import '../theme/app_theme.dart';
 import '../widgets/app_bottom_navigation.dart';
@@ -97,16 +98,22 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
                   ),
                   _buildArrowTile(
                     loc.t('settings.load_sample_data'),
+                    icon: Icons.download,
+                    iconColor: ThemeColors.pastelGreen,
                     onTap: () async {
                       await _loadSampleData();
                       if (!mounted) return;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(loc.t('settings.sample_data_loaded'))),
                       );
+                      // Navigate to preview so user can immediately inspect
+                      Navigator.pushNamed(context, '/sample-preview');
                     },
                   ),
                   _buildArrowTile(
                     loc.t('settings.clear_sample_data'),
+                    icon: Icons.delete_outline,
+                    iconColor: ThemeColors.pastelRed,
                     onTap: () async {
                       await _clearSampleData();
                       if (!mounted) return;
@@ -290,13 +297,23 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
     );
   }
 
-  Widget _buildArrowTile(String title, {VoidCallback? onTap}) {
+  Widget _buildArrowTile(String title,
+      {VoidCallback? onTap, IconData? icon, Color? iconColor}) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Row(
           children: [
+            if (icon != null)
+              Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: Icon(
+                  icon,
+                  color: iconColor ?? ThemeColors.pastelGreen,
+                  size: 22,
+                ),
+              ),
             Expanded(
               child: Text(
                 title,
@@ -615,58 +632,56 @@ class _AyarlarEkraniState extends State<AyarlarEkrani> {
 
   Future<void> _loadSampleData() async {
     final dataService = DataService.instance;
-
-    // create sample depot
-    final depotId = 'depot_${DateTime.now().microsecondsSinceEpoch}';
-    final depot = Depot(id: depotId, name: 'Örnek Depo 1', notes: 'Otomatik oluşturulmuş örnek depo');
-    dataService.addDepot(depot);
-
-    // create sample bags
-    final bag1Id = 'bag_${DateTime.now().microsecondsSinceEpoch}_a';
-    final bag2Id = 'bag_${DateTime.now().microsecondsSinceEpoch}_b';
-    final bag1 = Bag(id: bag1Id, name: 'Örnek Çanta 1', notes: 'İçinde temel malzemeler bulunur');
-    final bag2 = Bag(id: bag2Id, name: 'Örnek Çanta 2', notes: 'İkinci örnek çanta');
-    dataService.addBag(bag1);
-    dataService.addBag(bag2);
-
-    // create some sample products and attach to bag/depot
+    // Create richer sample data: multiple depots, bags, categories and varied products
     final now = DateTime.now();
-    final p1 = Product(
-      id: 'prod_${now.microsecondsSinceEpoch}_1',
-      name: 'Şişelenmiş Su',
-      categoryId: 'water',
-      expiryDate: now.add(const Duration(days: 365)),
-      reminderDate: now.add(const Duration(days: 330)),
-      storageId: bag1Id,
-      storageType: StorageLocationType.bag,
-      createdAt: now,
-    );
 
-    final p2 = Product(
-      id: 'prod_${now.microsecondsSinceEpoch}_2',
-      name: 'Konserve Ton Balığı',
-      categoryId: 'canned_food',
-      expiryDate: now.add(const Duration(days: 720)),
-      reminderDate: now.add(const Duration(days: 700)),
-      storageId: depotId,
-      storageType: StorageLocationType.depot,
-      createdAt: now,
-    );
+    // Depots
+    final depotId1 = 'depot_${now.microsecondsSinceEpoch}_1';
+    final depotId2 = 'depot_${now.microsecondsSinceEpoch}_2';
+    dataService.addDepot(Depot(id: depotId1, name: 'Ana Depo', notes: 'Merkezi depo (örnek)'));
+    dataService.addDepot(Depot(id: depotId2, name: 'Yedek Depo', notes: 'Yedek depo (örnek)'));
 
-    final p3 = Product(
-      id: 'prod_${now.microsecondsSinceEpoch}_3',
-      name: 'İlk Yardım Seti (Örnek)',
-      categoryId: 'first_aid_kit',
-      expiryDate: now.add(const Duration(days: 400)),
-      reminderDate: now.add(const Duration(days: 360)),
-      storageId: bag2Id,
-      storageType: StorageLocationType.bag,
-      createdAt: now,
-    );
+    // Bags
+    final bag1Id = 'bag_${now.microsecondsSinceEpoch}_a';
+    final bag2Id = 'bag_${now.microsecondsSinceEpoch}_b';
+    final bag3Id = 'bag_${now.microsecondsSinceEpoch}_c';
+    dataService.addBag(Bag(id: bag1Id, name: 'Ev Acil Çantası', notes: 'Temel ihtiyaçlar'));
+    dataService.addBag(Bag(id: bag2Id, name: 'Araba Çantası', notes: 'Araç için acil set'));
+    dataService.addBag(Bag(id: bag3Id, name: 'Ofis Çantası', notes: 'İş yeri acil ihtiyaçları'));
 
-    dataService.addProduct(p1);
-    dataService.addProduct(p2);
-    dataService.addProduct(p3);
+    // Custom categories (if not present)
+    dataService.addCustomCategory(Category(id: 'baby', name: 'Bebek Ürünleri', isCustom: true));
+    dataService.addCustomCategory(Category(id: 'pets', name: 'Evcil Hayvan', isCustom: true));
+
+    // Products with varied stock, SKT ve reminder date variations; reuse existing asset icon path where available
+    final img = 'assets/icons/icon.png';
+
+    void addProd(String idSuffix, String name, String categoryId, int daysToExpiry, int reminderOffsetDays, int stock, String? storageId, StorageLocationType storageType) {
+      final p = Product(
+        id: 'prod_${now.microsecondsSinceEpoch}_$idSuffix',
+        name: name,
+        categoryId: categoryId,
+        expiryDate: now.add(Duration(days: daysToExpiry)),
+        reminderDate: now.add(Duration(days: reminderOffsetDays)),
+        imagePath: img,
+        storageId: storageId,
+        storageType: storageType,
+        stock: stock,
+        createdAt: now,
+      );
+      dataService.addProduct(p);
+    }
+
+    addProd('1', 'Büyük Su Şişesi (1.5L)', 'water', 365, 330, 12, bag1Id, StorageLocationType.bag);
+    addProd('2', 'Konserve Ton Balığı', 'canned_food', 720, 700, 8, depotId1, StorageLocationType.depot);
+    addProd('3', 'İlk Yardım Seti', 'first_aid_kit', 400, 360, 2, bag2Id, StorageLocationType.bag);
+    addProd('4', 'Bebek Bezi', 'baby', 540, 520, 16, bag1Id, StorageLocationType.bag);
+    addProd('5', 'Enerji Barı', 'food', 180, 150, 0, bag3Id, StorageLocationType.bag); // out of stock
+    addProd('6', 'Pilli Radyo', 'battery_radio', 1095, 1000, 1, depotId2, StorageLocationType.depot);
+    addProd('7', 'Yara Bandı (paket)', 'first_aid_kit', 200, 170, 5, bag2Id, StorageLocationType.bag);
+    addProd('8', 'Evcil Hayvan Maması (konserve)', 'pets', 400, 360, 6, depotId1, StorageLocationType.depot);
+    addProd('9', 'Islak Mendil', 'wet_wipes', 120, 90, 30, bag1Id, StorageLocationType.bag);
+    addProd('10', 'Düdük', 'multi_tool', 3650, 3600, 3, bag3Id, StorageLocationType.bag);
   }
 
   Future<void> _clearSampleData() async {
