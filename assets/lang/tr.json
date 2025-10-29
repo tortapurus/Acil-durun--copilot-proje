@@ -135,14 +135,12 @@
   "blanket": "Battaniye",
   "total.items": "Toplam Ürün",
   "emergency.kits": "Acil Durum Çantaları",
-  
   "nav.home": "Ana Sayfa",
   "nav.bags": "Çantalar",
   "nav.depot": "Depo",
   "nav.products": "Ürünler",
   "nav.settings": "Ayarlar",
   "nav.info": "Bilgi",
-  
   "settings.appearance": "Görünüm",
   "settings.dark_theme": "Koyu Tema",
   "settings.language": "Dil Seçimi",
@@ -207,7 +205,6 @@
   "notifications.stockAlert.title": "Acil Durum Uyarısı",
   "notifications.stockAlert.expired": "{count} ürünün son kullanma tarihi geçti.",
   "notifications.stockAlert.missing": "{count} ürünün stoğu tükendi.",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -228,7 +225,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Depo Paneli",
   "depot.areas": "Depo Alanları",
   "depot.main": "Ana Depo",
@@ -248,7 +244,6 @@
   "status.expiry_approaching": "Son Kullanma Tarihi Yaklaşıyor",
   "status.expired": "Süresi Geçmiş",
   "items.count": "{count} ürün",
-  
   "products.title": "Ürünler",
   "products.search": "Ürün ara",
   "products.category": "Kategori",
@@ -270,17 +265,17 @@
   "products.empty.description": "Yeni bir ürün ekleyerek acil durum stoğunuzu oluşturmaya başlayın.",
   "products.water": "Su",
   "products.canned_beans": "Konserve Fasulye",
-  "products.energy_bar": "Enerji Barı", 
+  "products.energy_bar": "Enerji Barı",
   "products.vitamins": "Vitaminler",
   "products.bandage": "Yara Bandı",
-  "products.antiseptic_wipe": "Antiseptik Mendil",  "bag.create.title": "Yeni Çanta",
+  "products.antiseptic_wipe": "Antiseptik Mendil",
+  "bag.create.title": "Yeni Çanta",
   "bag.create.name": "Çanta Adı",
   "bag.create.name_placeholder": "Örn: Ev Acil Durum Çantası",
   "bag.create.notes": "Notlar (İsteğe Bağlı)",
   "bag.create.notes_placeholder": "Bu çantanın içeriği veya konumu hakkında notlar ekleyin...",
   "bag.create.button": "Çantayı Oluştur",
   "bag.create.success": "{name} çantası kaydedildi!",
-
   "productDetail.title": "Ürün Detayları",
   "productDetail.notFound": "Bu ürün bulunamadı veya silinmiş olabilir.",
   "productDetail.expiry.label": "Son Kullanma Tarihi",
@@ -293,7 +288,6 @@
   "productDetail.lastUpdated": "Son Güncelleme",
   "productDetail.delete.title": "Ürünü Sil",
   "productDetail.delete.message": "Bu ürünü silmek istediğinizden emin misiniz?",
-  
   "common.back": "Geri",
   "common.close": "Kapat",
   "common.cancel": "İptal",
@@ -304,7 +298,6 @@
   "form.error.required": "Bu alan zorunludur",
   "form.error.datePast": "Geçmiş bir tarih seçemezsiniz",
   "form.error.reminderAfterExpiry": "Hatırlatma tarihi SKT'den sonra olamaz",
-  
   "info.uploadButton": "Dosya Yükle",
   "info.uploadSnack": "Dosya yükleme özelliği yakında gelecek!",
   "info.filesTitle": "Dosyalarım",
@@ -312,7 +305,6 @@
   "info.file.delete": "Sil",
   "info.file.downloadSnack": "Dosya indiriliyor...",
   "info.file.deleteSnack": "Dosya silindi!",
-
   "photoCapture.title": "Ürün Fotoğrafı",
   "photoCapture.helper": "Ürünü hızlıca kaydetmek için önce fotoğrafını çekin.",
   "photoCapture.description": "Fotoğraf çekildikten sonra bilgiler ekranına yönlendirileceksiniz.",

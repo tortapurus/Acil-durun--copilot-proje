@@ -78,14 +78,12 @@
   "blanket": "پتو",
   "total.items": "تعداد کل موارد",
   "emergency.kits": "کیت‌های اضطراری",
-  
   "nav.home": "خانه",
   "nav.bags": "کیف‌ها",
   "nav.depot": "انبار",
   "nav.products": "محصولات",
   "nav.settings": "تنظیمات",
   "nav.info": "اطلاعات",
-  
   "settings.appearance": "ظاهر",
   "settings.dark_theme": "تم تیره",
   "settings.language": "انتخاب زبان",
@@ -110,7 +108,6 @@
   "settings.help_support": "کمک و پشتیبانی",
   "settings.terms": "شرایط استفاده",
   "settings.privacy": "سیاست حریم خصوصی",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "پنل انبار",
   "depot.areas": "مناطق انبار",
   "depot.main": "انبار اصلی",
@@ -142,7 +138,6 @@
   "status.missing": "موارد گمشده",
   "status.expiry_approaching": "نزدیک به انقضا",
   "items.count": "{count} مورد",
-  
   "products.title": "محصولات",
   "products.search": "جستجوی محصولات",
   "products.category": "دسته‌بندی",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "کیف جدید",
   "bag.create.name": "نام کیف",
   "bag.create.name_placeholder": "مثال: کیت اضطراری خانه",
   "bag.create.notes": "یادداشت‌ها (اختیاری)",
   "bag.create.notes_placeholder": "یادداشت‌هایی درباره محتوا یا مکان این کیف اضافه کنید...",
   "bag.create.button": "ایجاد کیف",
-  
   "common.close": "بستن",
   "common.cancel": "لغو",
   "common.confirm": "تأیید",

@@ -33,9 +33,9 @@ class BilgiMerkezi extends StatelessWidget {
                     ),
                   ],
                 ),
-                
+
                 const SizedBox(height: 24),
-                
+
                 // Upload button
                 SizedBox(
                   width: double.infinity,
@@ -76,9 +76,9 @@ class BilgiMerkezi extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: 32),
-                
+
                 // Files section
                 Text(
                   loc.t('info.filesTitle'),
@@ -88,9 +88,9 @@ class BilgiMerkezi extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Sample files
                 _FileCard(
                   fileName: 'Acil_Hazirlik_Rehberi.pdf',
@@ -114,19 +114,19 @@ class BilgiMerkezi extends StatelessWidget {
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 12),
-                
+
                 _FileCard(
                   fileName: 'Canta_Icerigi.jpg',
-                  fileMeta: '1.8 MB • 12.10.2025',  
+                  fileMeta: '1.8 MB • 12.10.2025',
                   icon: Icons.image_outlined,
                   chipColor: ThemeColors.pastelPurple,
                   onDownload: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(loc.t('info.file.downloadSnack')),
-                        backgroundColor: ThemeColors.pastelBlue,  
+                        backgroundColor: ThemeColors.pastelBlue,
                       ),
                     );
                   },
@@ -139,9 +139,9 @@ class BilgiMerkezi extends StatelessWidget {
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 12),
-                
+
                 _FileCard(
                   fileName: 'İlk_Yardim_Rehberi.pdf',
                   fileMeta: '3.1 MB • 10.10.2025',
@@ -164,7 +164,7 @@ class BilgiMerkezi extends StatelessWidget {
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 80), // Bottom padding for navigation
               ],
             ),
@@ -212,15 +212,11 @@ class _FileCard extends StatelessWidget {
               color: chipColor.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
-              icon,
-              color: chipColor,
-              size: 20,
-            ),
+            child: Icon(icon, color: chipColor, size: 20),
           ),
-          
+
           const SizedBox(width: 16),
-          
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,12 +240,9 @@ class _FileCard extends StatelessWidget {
               ],
             ),
           ),
-          
+
           PopupMenuButton<String>(
-            icon: const Icon(
-              Icons.more_horiz,
-              color: ThemeColors.textGrey,
-            ),
+            icon: const Icon(Icons.more_horiz, color: ThemeColors.textGrey),
             color: ThemeColors.bgCard,
             itemBuilder: (context) => [
               PopupMenuItem(
@@ -257,7 +250,11 @@ class _FileCard extends StatelessWidget {
                 child: Consumer<LocalizationService>(
                   builder: (context, loc, child) => Row(
                     children: [
-                      const Icon(Icons.download, color: ThemeColors.textWhite, size: 18),
+                      const Icon(
+                        Icons.download,
+                        color: ThemeColors.textWhite,
+                        size: 18,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         loc.t('info.file.download'),
@@ -272,12 +269,16 @@ class _FileCard extends StatelessWidget {
                 child: Consumer<LocalizationService>(
                   builder: (context, loc, child) => Row(
                     children: [
-                      const Icon(Icons.delete, color: ThemeColors.pastelRed, size: 18),
+                      const Icon(
+                        Icons.delete,
+                        color: ThemeColors.pastelRed,
+                        size: 18,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         loc.t('info.file.delete'),
                         style: const TextStyle(color: ThemeColors.pastelRed),
-                      ),  
+                      ),
                     ],
                   ),
                 ),

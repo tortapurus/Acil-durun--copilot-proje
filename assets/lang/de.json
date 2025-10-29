@@ -81,10 +81,9 @@
   "nav.home": "Startseite",
   "nav.bags": "Taschen",
   "nav.depot": "Depot",
-  "nav.products": "Produkte", 
+  "nav.products": "Produkte",
   "nav.settings": "Einstellungen",
   "nav.info": "Info",
-  
   "settings.appearance": "Erscheinungsbild",
   "settings.dark_theme": "Dunkles Theme",
   "settings.language": "Sprache auswählen",
@@ -105,11 +104,10 @@
   "settings.backup_data": "Daten sichern",
   "settings.restore_data": "Daten wiederherstellen",
   "settings.general": "ALLGEMEIN",
-  "settings.app_info": "App-Informationen", 
+  "settings.app_info": "App-Informationen",
   "settings.help_support": "Hilfe & Support",
   "settings.terms": "Nutzungsbedingungen",
   "settings.privacy": "Datenschutzerklärung",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -130,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Depot Panel",
   "depot.areas": "Lagerbereiche",
   "depot.main": "Hauptdepot",
@@ -141,7 +138,6 @@
   "status.missing": "Fehlende Artikel",
   "status.expiry_approaching": "Ablaufdatum naht",
   "items.count": "{count} Artikel",
-  
   "products.title": "Produkte",
   "products.search": "Produkte suchen",
   "products.category": "Kategorie",
@@ -169,14 +165,12 @@
   "newProduct.image.label": "Produktbild",
   "newProduct.image.helper": "Fügen Sie hier Produktbilder hinzu",
   "newProduct.image.captured": "Foto hinzugefügt. Bitte restliche Angaben ausfüllen.",
-  
   "bag.create.title": "Neue Tasche",
   "bag.create.name": "Taschenname",
   "bag.create.name_placeholder": "Z.B: Notfallset für zu Hause",
   "bag.create.notes": "Notizen (Optional)",
   "bag.create.notes_placeholder": "Notizen über den Inhalt oder Standort dieser Tasche hinzufügen...",
   "bag.create.button": "Tasche erstellen",
-  
   "common.close": "Schließen",
   "common.cancel": "Abbrechen",
   "common.confirm": "Bestätigen",

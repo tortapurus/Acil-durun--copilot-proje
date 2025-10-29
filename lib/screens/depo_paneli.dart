@@ -79,11 +79,10 @@ class DepoPaneli extends StatelessWidget {
                                   (depot) => Padding(
                                     padding: const EdgeInsets.only(bottom: 16),
                                     child: _DepotCard(
-                                      depot: depot,
-                                      products: data.getProductsInDepot(depot.id),
-                                      loc: loc,
-                                      data: data,
-                                    ),
+                                        depot: depot,
+                                        loc: loc,
+                                        data: data,
+                                      ),
                                   ),
                                 )
                                 .toList(),
@@ -476,24 +475,21 @@ class _EmptyDepotState extends StatelessWidget {
 class _DepotCard extends StatelessWidget {
   const _DepotCard({
     required this.depot,
-    required this.products,
     required this.loc,
     required this.data,
   });
 
   final Depot depot;
-  final List<Product> products;
   final LocalizationService loc;
   final DataService data;
 
   @override
   Widget build(BuildContext context) {
+    final List<Product> products = data.getProductsInDepot(depot.id);
     final int productCount = products.length;
     final int expiredCount = products.where((product) => product.isExpired).length;
-    final int expiringSoonCount =
-        products.where((product) => product.isExpiringsSoon).length;
-    final int missingCount =
-        products.where((product) => product.stock <= 0).length;
+    final int expiringSoonCount = products.where((product) => product.isExpiringsSoon).length;
+    final int missingCount = products.where((product) => product.stock <= 0).length;
 
     final _DepotStatus status = _DepotStatus.resolve(
       expiredCount: expiredCount,
@@ -501,9 +497,14 @@ class _DepotCard extends StatelessWidget {
       missingCount: missingCount,
     );
 
-    final List<Product> highlightedProducts = products.take(4).toList();
-
-    return Container(
+    return InkWell(
+      borderRadius: BorderRadius.circular(18),
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/depo-detay',
+        arguments: {'depotId': depot.id},
+      ),
+  child: Container(
       decoration: BoxDecoration(
         color: ThemeColors.bgCard,
         borderRadius: BorderRadius.circular(18),
@@ -568,133 +569,26 @@ class _DepotCard extends StatelessWidget {
               ),
             ],
           ),
-          if (products.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            ...highlightedProducts.map(
-              (product) => Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: _DepotProductRow(
-                  product: product,
-                  loc: loc,
-                  data: data,
-                ),
-              ),
-            ),
-          ]
-          else ...[
-            const SizedBox(height: 12),
-            Text(
-              loc.t('products.empty.title'),
-              style: const TextStyle(
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: const [
+              Icon(
+                Icons.chevron_right,
                 color: ThemeColors.textGrey,
-                fontSize: 13,
               ),
-            ),
-          ],
+            ],
+          ),
         ],
       ),
+    ),
     );
+    
+    // InkWell closed above; ensure widget parentheses balance
   }
 }
 
-class _DepotProductRow extends StatelessWidget {
-  const _DepotProductRow({
-    required this.product,
-    required this.loc,
-    required this.data,
-  });
-
-  final Product product;
-  final LocalizationService loc;
-  final DataService data;
-
-  @override
-  Widget build(BuildContext context) {
-    final String categoryLabel = data.resolveCategoryLabel(product.categoryId, loc);
-    final bool isExpired = product.isExpired;
-    final bool isExpiringSoon = product.isExpiringsSoon;
-
-    final String expiryText;
-    if (isExpired) {
-      expiryText = loc.t('status.expired');
-    } else if (isExpiringSoon) {
-      expiryText = loc.t('status.expiry_approaching');
-    } else {
-      expiryText = '${product.daysRemaining} ${loc.t('products.remaining_days')}';
-    }
-
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: () => Navigator.pushNamed(
-        context,
-        '/urun-detay',
-        arguments: {'productId': product.id},
-      ),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-        decoration: BoxDecoration(
-          color: ThemeColors.bg3,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 36,
-              height: 36,
-              decoration: BoxDecoration(
-                color: ThemeColors.bgCard,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              alignment: Alignment.center,
-              child: const Icon(
-                Icons.inventory_2_outlined,
-                color: ThemeColors.textGrey,
-                size: 20,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.name,
-                    style: const TextStyle(
-                      color: ThemeColors.textWhite,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '$categoryLabel • $expiryText',
-                    style: const TextStyle(
-                      color: ThemeColors.textGrey,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  '${loc.t('products.stock')}: ${product.stock}',
-                  style: const TextStyle(
-                    color: ThemeColors.textWhite,
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// _DepotProductRow removed — depot cards no longer render product previews.
 
 class _SummaryCard extends StatelessWidget {
   const _SummaryCard({

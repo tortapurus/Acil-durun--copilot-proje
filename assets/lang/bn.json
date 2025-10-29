@@ -78,14 +78,12 @@
   "blanket": "কম্বল",
   "total.items": "মোট আইটেম",
   "emergency.kits": "জরুরি কিট",
-  
   "nav.home": "হোম",
   "nav.bags": "ব্যাগ",
   "nav.depot": "ডিপো",
   "nav.products": "পণ্য",
   "nav.settings": "সেটিংস",
   "nav.info": "তথ্য",
-  
   "settings.appearance": "চেহারা",
   "settings.dark_theme": "ডার্ক থিম",
   "settings.language": "ভাষা নির্বাচন",
@@ -110,7 +108,6 @@
   "settings.help_support": "সাহায্য ও সহায়তা",
   "settings.terms": "ব্যবহারের শর্তাদি",
   "settings.privacy": "গোপনীয়তা নীতি",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "ডিপো প্যানেল",
   "depot.areas": "ডিপো এলাকা",
   "depot.main": "প্রধান ডিপো",
@@ -142,7 +138,6 @@
   "status.missing": "অনুপস্থিত আইটেম",
   "status.expiry_approaching": "মেয়াদ শেষ হওয়ার কাছাকাছি",
   "items.count": "{count}টি আইটেম",
-  
   "products.title": "পণ্য",
   "products.search": "পণ্য অনুসন্ধান",
   "products.category": "বিভাগ",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "নতুন ব্যাগ",
   "bag.create.name": "ব্যাগের নাম",
   "bag.create.name_placeholder": "যেমন: বাড়ির জরুরি কিট",
   "bag.create.notes": "নোট (ঐচ্ছিক)",
   "bag.create.notes_placeholder": "এই ব্যাগের বিষয়বস্তু বা অবস্থান সম্পর্কে নোট যোগ করুন...",
   "bag.create.button": "ব্যাগ তৈরি করুন",
-  
   "common.close": "বন্ধ করুন",
   "common.cancel": "বাতিল",
   "common.confirm": "নিশ্চিত করুন",

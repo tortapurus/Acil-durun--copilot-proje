@@ -44,11 +44,7 @@ class Category {
   }
 
   static const List<Category> _fixedCategories = [
-    Category(
-      id: 'water',
-      name: 'Su',
-      translationKey: 'categories.fixed.water',
-    ),
+    Category(id: 'water', name: 'Su', translationKey: 'categories.fixed.water'),
     Category(
       id: 'canned_food',
       name: 'Konserve',
@@ -211,5 +207,6 @@ class Category {
     ),
   ];
 
-  static List<Category> get fixedCategories => List<Category>.from(_fixedCategories);
+  static List<Category> get fixedCategories =>
+      List<Category>.from(_fixedCategories);
 }

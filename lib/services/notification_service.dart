@@ -20,10 +20,10 @@ class NotificationService {
 
     const DarwinInitializationSettings iOSSettings =
         DarwinInitializationSettings(
-      requestSoundPermission: true,
-      requestBadgePermission: true,
-      requestAlertPermission: true,
-    );
+          requestSoundPermission: true,
+          requestBadgePermission: true,
+          requestAlertPermission: true,
+        );
 
     const InitializationSettings settings = InitializationSettings(
       android: androidSettings,
@@ -95,17 +95,16 @@ class NotificationService {
   }) async {
     final AndroidNotificationDetails androidDetails =
         AndroidNotificationDetails(
-      'acil_durum_channel',
-      'Acil Durum Bildirimleri',
-      channelDescription: 'Acil durum takip sistemi bildirimleri',
-      importance: Importance.high,
-      priority: Priority.high,
-      playSound: playSound,
-      enableVibration: enableVibration,
-    );
+          'acil_durum_channel',
+          'Acil Durum Bildirimleri',
+          channelDescription: 'Acil durum takip sistemi bildirimleri',
+          importance: Importance.high,
+          priority: Priority.high,
+          playSound: playSound,
+          enableVibration: enableVibration,
+        );
 
-    final DarwinNotificationDetails iOSDetails =
-        DarwinNotificationDetails(
+    final DarwinNotificationDetails iOSDetails = DarwinNotificationDetails(
       presentAlert: true,
       presentBadge: true,
       presentSound: playSound,

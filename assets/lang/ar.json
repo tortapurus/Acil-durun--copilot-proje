@@ -78,14 +78,12 @@
   "blanket": "بطانية",
   "total.items": "إجمالي العناصر",
   "emergency.kits": "حقائب الطوارئ",
-  
   "nav.home": "الرئيسية",
   "nav.bags": "الحقائب",
   "nav.depot": "المستودع",
   "nav.products": "المنتجات",
   "nav.settings": "الإعدادات",
   "nav.info": "معلومات",
-  
   "settings.appearance": "المظهر",
   "settings.dark_theme": "المظهر الداكن",
   "settings.language": "اختيار اللغة",
@@ -110,7 +108,6 @@
   "settings.help_support": "المساعدة والدعم",
   "settings.terms": "شروط الاستخدام",
   "settings.privacy": "سياسة الخصوصية",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "لوحة المستودع",
   "depot.areas": "مناطق التخزين",
   "depot.main": "المستودع الرئيسي",
@@ -142,7 +138,6 @@
   "status.missing": "عناصر مفقودة",
   "status.expiry_approaching": "تاريخ انتهاء الصلاحية يقترب",
   "items.count": "{count} عنصر",
-  
   "products.title": "المنتجات",
   "products.search": "البحث عن المنتجات",
   "products.category": "الفئة",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "حقيبة جديدة",
   "bag.create.name": "اسم الحقيبة",
   "bag.create.name_placeholder": "مثال: حقيبة طوارئ المنزل",
   "bag.create.notes": "ملاحظات (اختيارية)",
   "bag.create.notes_placeholder": "إضافة ملاحظات حول محتويات هذه الحقيبة أو موقعها...",
   "bag.create.button": "إنشاء الحقيبة",
-  
   "common.close": "إغلاق",
   "common.cancel": "إلغاء",
   "common.confirm": "تأكيد",

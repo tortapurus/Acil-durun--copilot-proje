@@ -84,7 +84,6 @@
   "nav.products": "Productos",
   "nav.settings": "Ajustes",
   "nav.info": "Info",
-  
   "settings.appearance": "Apariencia",
   "settings.dark_theme": "Tema Oscuro",
   "settings.language": "Selección de Idioma",
@@ -109,7 +108,6 @@
   "settings.help_support": "Ayuda y Soporte",
   "settings.terms": "Términos de Servicio",
   "settings.privacy": "Política de Privacidad",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -130,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Panel de Depósito",
   "depot.areas": "Áreas de Almacenamiento",
   "depot.main": "Depósito Principal",
@@ -141,7 +138,6 @@
   "status.missing": "Artículos Faltantes",
   "status.expiry_approaching": "Fecha de Vencimiento Próxima",
   "items.count": "{count} artículos",
-  
   "products.title": "Productos",
   "products.search": "Buscar productos",
   "products.category": "Categoría",
@@ -169,14 +165,12 @@
   "newProduct.image.label": "Imagen del Producto",
   "newProduct.image.helper": "Agrega imágenes del producto aquí",
   "newProduct.image.captured": "Foto adjunta. Completa el resto de la información.",
-  
   "bag.create.title": "Nueva Bolsa",
   "bag.create.name": "Nombre de la Bolsa",
   "bag.create.name_placeholder": "Ej: Kit de Emergencia del Hogar",
   "bag.create.notes": "Notas (Opcional)",
   "bag.create.notes_placeholder": "Agregar notas sobre el contenido o ubicación de esta bolsa...",
   "bag.create.button": "Crear Bolsa",
-  
   "common.close": "Cerrar",
   "common.cancel": "Cancelar",
   "common.confirm": "Confirmar",

@@ -84,7 +84,6 @@
   "nav.products": "Товары",
   "nav.settings": "Настройки",
   "nav.info": "Информация",
-  
   "settings.appearance": "Внешний вид",
   "settings.dark_theme": "Тёмная тема",
   "settings.language": "Выбор языка",
@@ -109,7 +108,6 @@
   "settings.help_support": "Помощь и поддержка",
   "settings.terms": "Условия использования",
   "settings.privacy": "Политика конфиденциальности",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -130,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Панель склада",
   "depot.areas": "Складские зоны",
   "depot.main": "Основной склад",
@@ -141,7 +138,6 @@
   "status.missing": "Отсутствующие товары",
   "status.expiry_approaching": "Приближается срок годности",
   "items.count": "{count} товаров",
-  
   "products.title": "Товары",
   "products.search": "Поиск товаров",
   "products.category": "Категория",
@@ -169,14 +165,12 @@
   "newProduct.image.label": "Изображение товара",
   "newProduct.image.helper": "Добавьте изображения товара здесь",
   "newProduct.image.captured": "Фото добавлено. Заполните оставшиеся поля.",
-  
   "bag.create.title": "Новая сумка",
   "bag.create.name": "Название сумки",
   "bag.create.name_placeholder": "Например: Домашняя аварийная сумка",
   "bag.create.notes": "Примечания (необязательно)",
   "bag.create.notes_placeholder": "Добавить примечания о содержимом или местоположении этой сумки...",
   "bag.create.button": "Создать сумку",
-  
   "common.close": "Закрыть",
   "common.cancel": "Отмена",
   "common.confirm": "Подтвердить",

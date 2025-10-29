@@ -18,10 +18,12 @@ class AcilDurumPaneli extends StatelessWidget {
         final List<Bag> bags = data.bags;
         final List<Product> expiredProducts = data.getExpiredProducts();
         final List<Product> expiringProducts = data.getExpiringProducts();
-        final List<Product> outOfStockProducts =
-            data.products.where((product) => product.stock <= 0).toList();
+        final List<Product> outOfStockProducts = data.products
+            .where((product) => product.stock <= 0)
+            .toList();
 
-        final bool hasAlerts = expiredProducts.isNotEmpty ||
+        final bool hasAlerts =
+            expiredProducts.isNotEmpty ||
             expiringProducts.isNotEmpty ||
             outOfStockProducts.isNotEmpty;
 
@@ -65,10 +67,8 @@ class AcilDurumPaneli extends StatelessWidget {
                     title: loc.t('bags.title'),
                     trailing: IconButton(
                       tooltip: loc.t('bag.create.button'),
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        '/yeni-canta',
-                      ),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, '/yeni-canta'),
                       icon: const Icon(
                         Icons.add_circle_outline,
                         color: ThemeColors.pastelGreen,
@@ -88,8 +88,10 @@ class AcilDurumPaneli extends StatelessWidget {
                             .where((product) => product.isExpired)
                             .length;
                         final int expiringCount = bagProducts
-                            .where((product) =>
-                                product.isExpiringsSoon && !product.isExpired)
+                            .where(
+                              (product) =>
+                                  product.isExpiringsSoon && !product.isExpired,
+                            )
                             .length;
                         final int missingCount = bagProducts
                             .where((product) => product.stock <= 0)
@@ -117,10 +119,9 @@ class AcilDurumPaneli extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 12),
                           child: _StatusCard(
                             title: bag.name,
-                            subtitle: loc.t(
-                              'items.count',
-                              {'count': totalCount.toString()},
-                            ),
+                            subtitle: loc.t('items.count', {
+                              'count': totalCount.toString(),
+                            }),
                             chips: chips,
                             details: details,
                             accent: accentColor,
@@ -160,9 +161,8 @@ class AcilDurumPaneli extends StatelessWidget {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
-        final bool hasAlerts = expired.isNotEmpty ||
-            expiring.isNotEmpty ||
-            outOfStock.isNotEmpty;
+        final bool hasAlerts =
+            expired.isNotEmpty || expiring.isNotEmpty || outOfStock.isNotEmpty;
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24),
@@ -233,7 +233,7 @@ class AcilDurumPaneli extends StatelessWidget {
                       loc: loc,
                       data: data,
                     ),
-                  ],
+                ],
               ],
             ),
           ),
@@ -244,10 +244,7 @@ class AcilDurumPaneli extends StatelessWidget {
 }
 
 class _NotificationButton extends StatelessWidget {
-  const _NotificationButton({
-    required this.hasAlerts,
-    required this.onTap,
-  });
+  const _NotificationButton({required this.hasAlerts, required this.onTap});
 
   final bool hasAlerts;
   final VoidCallback onTap;
@@ -266,11 +263,7 @@ class _NotificationButton extends StatelessWidget {
           ),
         ),
         if (hasAlerts)
-          const Positioned(
-            right: 6,
-            top: 6,
-            child: _NotificationDot(),
-          ),
+          const Positioned(right: 6, top: 6, child: _NotificationDot()),
       ],
     );
   }
@@ -293,10 +286,7 @@ class _NotificationDot extends StatelessWidget {
 }
 
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({
-    required this.title,
-    this.trailing,
-  });
+  const _SectionHeader({required this.title, this.trailing});
 
   final String title;
   final Widget? trailing;
@@ -411,11 +401,7 @@ class _StatusCard extends StatelessWidget {
               color: accent.withValues(alpha: 0.16),
               borderRadius: BorderRadius.circular(16),
             ),
-            child: Icon(
-              icon,
-              color: accent,
-              size: 28,
-            ),
+            child: Icon(icon, color: accent, size: 28),
           ),
         ],
       ),
@@ -449,10 +435,7 @@ class _StatusChip extends StatelessWidget {
 }
 
 class _StatusChipData {
-  const _StatusChipData({
-    required this.label,
-    required this.color,
-  });
+  const _StatusChipData({required this.label, required this.color});
 
   final String label;
   final Color color;
@@ -547,10 +530,7 @@ class _EmptyState extends StatelessWidget {
           Text(
             message,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              color: ThemeColors.textGrey,
-              fontSize: 14,
-            ),
+            style: const TextStyle(color: ThemeColors.textGrey, fontSize: 14),
           ),
         ],
       ),
@@ -639,10 +619,7 @@ class _ProductAlertTile extends StatelessWidget {
               color: accent.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(
-              icon,
-              color: accent,
-            ),
+            child: Icon(icon, color: accent),
           ),
           const SizedBox(width: 12),
           Expanded(

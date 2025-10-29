@@ -78,14 +78,12 @@
   "blanket": "毛布",
   "total.items": "合計アイテム",
   "emergency.kits": "非常用キット",
-  
   "nav.home": "ホーム",
   "nav.bags": "バッグ",
   "nav.depot": "倉庫",
   "nav.products": "製品",
   "nav.settings": "設定",
   "nav.info": "情報",
-  
   "settings.appearance": "外観",
   "settings.dark_theme": "ダークテーマ",
   "settings.language": "言語選択",
@@ -110,7 +108,6 @@
   "settings.help_support": "ヘルプ＆サポート",
   "settings.terms": "利用規約",
   "settings.privacy": "プライバシーポリシー",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "倉庫パネル",
   "depot.areas": "倉庫エリア",
   "depot.main": "メイン倉庫",
@@ -142,7 +138,6 @@
   "status.missing": "不足アイテム",
   "status.expiry_approaching": "有効期限接近",
   "items.count": "{count}個のアイテム",
-  
   "products.title": "製品",
   "products.search": "製品を検索",
   "products.category": "カテゴリ",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "アイテム写真",
   "newProduct.image.helper": "ここに製品写真を追加してください",
   "newProduct.image.captured": "写真が追加されました。残りの情報を入力してください。",
-  
   "bag.create.title": "新しいバッグ",
   "bag.create.name": "バッグ名",
   "bag.create.name_placeholder": "例：ホーム非常用キット",
   "bag.create.notes": "メモ（オプション）",
   "bag.create.notes_placeholder": "このバッグの内容や場所についてのメモを追加...",
   "bag.create.button": "バッグを作成",
-  
   "common.close": "閉じる",
   "common.cancel": "キャンセル",
   "common.confirm": "確認",

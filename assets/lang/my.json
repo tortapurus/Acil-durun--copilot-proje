@@ -78,14 +78,12 @@
   "blanket": "ခြောက်",
   "total.items": "စုစုပေါင်းပစ္စည်းများ",
   "emergency.kits": "အရေးပေါ်ကိရိယာများ",
-  
   "nav.home": "မူလစာမျက်နှာ",
   "nav.bags": "အိတ်များ",
   "nav.depot": "ကုန်လှောင်ရုံ",
   "nav.products": "ကုန်ပစ္စည်းများ",
   "nav.settings": "ဆက်တင်များ",
   "nav.info": "အချက်အလက်",
-  
   "settings.appearance": "အသွင်အပြင်",
   "settings.dark_theme": "မှောင်မိုက်သစ်",
   "settings.language": "ဘာသာစကားရွေးချယ်မှု",
@@ -110,7 +108,6 @@
   "settings.help_support": "အကူအညီ နှင့် ပံ့ပိုးကူညီမှု",
   "settings.terms": "အသုံးပြုမှု စည်းမျဉ်းများ",
   "settings.privacy": "ကိုယ်ရေးကိုယ်တာ မူဝါဒ",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "ကုန်လှောင်ရုံ ပြခင်းစင်",
   "depot.areas": "ကုန်လှောင်ရုံ နေရာများ",
   "depot.main": "အဓိက ကုန်လှောင်ရုံ",
@@ -142,7 +138,6 @@
   "status.missing": "ပျောက်ဆုံးပစ္စည်းများ",
   "status.expiry_approaching": "သက်တမ်းကုန်မည့် အချိန်နီး",
   "items.count": "ပစ္စည်း {count} ခု",
-  
   "products.title": "ကုန်ပစ္စည်းများ",
   "products.search": "ကုန်ပစ္စည်း ရှာဖွေပါ",
   "products.category": "အမျိုးအစား",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "အိတ် အသစ်",
   "bag.create.name": "အိတ်အမည်",
   "bag.create.name_placeholder": "ဥပမာ - အိမ်တွင်းအရေးပေါ်ကိရိယာ",
   "bag.create.notes": "မှတ်စုများ (စိတ်ကြိုက်)",
   "bag.create.notes_placeholder": "ဤအိတ်အတွင်းပါဝင်မှုများ သို့မဟုတ် တည်နေရာ အကြောင်း မှတ်စုများထည့်ပါ...",
   "bag.create.button": "အိတ်ဖန်တီးပါ",
-  
   "common.close": "ပိတ်ပါ",
   "common.cancel": "ဖျက်သိမ်းပါ",
   "common.confirm": "အတည်ပြုပါ",

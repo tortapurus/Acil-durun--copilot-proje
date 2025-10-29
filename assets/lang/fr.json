@@ -84,7 +84,6 @@
   "nav.products": "Produits",
   "nav.settings": "Paramètres",
   "nav.info": "Info",
-  
   "settings.appearance": "Apparence",
   "settings.dark_theme": "Thème Sombre",
   "settings.language": "Sélection de Langue",
@@ -109,7 +108,6 @@
   "settings.help_support": "Aide & Support",
   "settings.terms": "Conditions d'Utilisation",
   "settings.privacy": "Politique de Confidentialité",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -130,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Panneau Dépôt",
   "depot.areas": "Zones de Stockage",
   "depot.main": "Dépôt Principal",
@@ -141,7 +138,6 @@
   "status.missing": "Articles Manquants",
   "status.expiry_approaching": "Date d'Expiration Approche",
   "items.count": "{count} articles",
-  
   "products.title": "Produits",
   "products.search": "Rechercher produits",
   "products.category": "Catégorie",
@@ -169,14 +165,12 @@
   "newProduct.image.label": "Image du produit",
   "newProduct.image.helper": "Ajoutez des visuels du produit ici",
   "newProduct.image.captured": "Photo ajoutée. Complétez les autres informations.",
-  
   "bag.create.title": "Nouveau Sac",
   "bag.create.name": "Nom du Sac",
   "bag.create.name_placeholder": "Ex: Kit d'Urgence Maison",
   "bag.create.notes": "Notes (Optionnel)",
   "bag.create.notes_placeholder": "Ajouter des notes sur le contenu ou l'emplacement de ce sac...",
   "bag.create.button": "Créer le Sac",
-  
   "common.close": "Fermer",
   "common.cancel": "Annuler",
   "common.confirm": "Confirmer",

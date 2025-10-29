@@ -27,7 +27,6 @@
   "blanket": "کمبل",
   "total.items": "کل آئٹمز",
   "emergency.kits": "ہنگامی کٹس",
-  
   "categories.fixed.water": "پینے کا پانی",
   "categories.fixed.canned_food": "ڈبہ بند کھانا",
   "categories.fixed.nuts": "میوے",
@@ -61,14 +60,12 @@
   "categories.fixed.slug_rounds": "سلیگ گولیاں",
   "categories.fixed.shot_shells": "شاٹ گن کارتوس",
   "categories.fixed.lead_free_ammo": "بغیر سیسے کا گولہ بارود",
-  
   "nav.home": "ہوم",
   "nav.bags": "بیگز",
   "nav.depot": "ڈپو",
   "nav.products": "مصنوعات",
   "nav.settings": "ترتیبات",
   "nav.info": "معلومات",
-  
   "settings.appearance": "ظاہری شکل",
   "settings.dark_theme": "ڈارک تھیم",
   "settings.language": "زبان کا انتخاب",
@@ -93,7 +90,6 @@
   "settings.help_support": "مدد اور سپورٹ",
   "settings.terms": "استعمال کی شرائط",
   "settings.privacy": "پرائیویسی پالیسی",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -114,7 +110,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "ڈپو پینل",
   "depot.areas": "ڈپو علاقے",
   "depot.main": "اصل ڈپو",
@@ -125,7 +120,6 @@
   "status.missing": "غائب آئٹمز",
   "status.expiry_approaching": "مدت ختم ہونے والی",
   "items.count": "{count} آئٹمز",
-  
   "products.title": "مصنوعات",
   "products.search": "مصنوعات تلاش کریں",
   "products.category": "زمرہ",
@@ -139,14 +133,12 @@
   "products.vitamins": "وٹامنز",
   "products.bandage": "پٹی",
   "products.antiseptic_wipe": "اینٹی سیپٹک وائپ",
-  
   "bag.create.title": "نیا بیگ",
   "bag.create.name": "بیگ کا نام",
   "bag.create.name_placeholder": "مثال: گھر کا ہنگامی کٹ",
   "bag.create.notes": "نوٹس (اختیاری)",
   "bag.create.notes_placeholder": "اس بیگ کے مواد یا مقام کے بارے میں نوٹس شامل کریں...",
   "bag.create.button": "بیگ بنائیں",
-  
   "common.close": "بند کریں",
   "common.cancel": "منسوخ",
   "common.confirm": "تصدیق",

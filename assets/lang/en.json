@@ -141,7 +141,6 @@
   "nav.products": "Products",
   "nav.settings": "Settings",
   "nav.info": "Info",
-  
   "settings.appearance": "Appearance",
   "settings.dark_theme": "Dark Theme",
   "settings.language": "Language Selection",
@@ -206,7 +205,6 @@
   "notifications.stockAlert.title": "Emergency Stock Alert",
   "notifications.stockAlert.expired": "{count} items have expired.",
   "notifications.stockAlert.missing": "{count} items are out of stock.",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -227,9 +225,8 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Depot Panel",
-  "depot.areas": "Storage Areas", 
+  "depot.areas": "Storage Areas",
   "depot.main": "Main Depot",
   "depot.backup": "Backup Depot",
   "depot.create.button": "Create Depot",
@@ -247,7 +244,6 @@
   "status.expiry_approaching": "Expiry Date Approaching",
   "status.expired": "Expired",
   "items.count": "{count} items",
-  
   "products.title": "Products",
   "products.search": "Search products",
   "products.category": "Category",
@@ -273,7 +269,6 @@
   "products.vitamins": "Vitamins",
   "products.bandage": "Bandage",
   "products.antiseptic_wipe": "Antiseptic Wipe",
-  
   "bag.create.title": "New Bag",
   "bag.create.name": "Bag Name",
   "bag.create.name_placeholder": "E.g: Home Emergency Kit",
@@ -281,7 +276,6 @@
   "bag.create.notes_placeholder": "Add notes about this bag's contents or location...",
   "bag.create.button": "Create Bag",
   "bag.create.success": "{name} bag created!",
-
   "productDetail.title": "Product Details",
   "productDetail.notFound": "This product could not be found or may have been removed.",
   "productDetail.expiry.label": "Expiry Date",
@@ -294,10 +288,9 @@
   "productDetail.lastUpdated": "Last Updated",
   "productDetail.delete.title": "Delete Product",
   "productDetail.delete.message": "Are you sure you want to delete this product?",
-  
   "common.back": "Back",
   "common.close": "Close",
-  "common.cancel": "Cancel", 
+  "common.cancel": "Cancel",
   "common.confirm": "Confirm",
   "common.add": "Add",
   "common.remove": "Remove",
@@ -305,7 +298,6 @@
   "form.error.required": "This field is required",
   "form.error.datePast": "Please choose a future date",
   "form.error.reminderAfterExpiry": "Reminder date must be before the expiry date",
-  
   "info.uploadButton": "Upload File",
   "info.uploadSnack": "File upload feature coming soon!",
   "info.filesTitle": "My Files",
@@ -313,7 +305,6 @@
   "info.file.delete": "Delete",
   "info.file.downloadSnack": "Downloading file...",
   "info.file.deleteSnack": "File deleted!",
-
   "photoCapture.title": "Capture Product Photo",
   "photoCapture.helper": "Start by taking a clear photo of the item.",
   "photoCapture.description": "After the photo is taken, you'll jump straight to the product form.",

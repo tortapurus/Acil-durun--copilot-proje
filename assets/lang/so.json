@@ -78,14 +78,12 @@
   "blanket": "Shashad",
   "total.items": "Wadarta shayga",
   "emergency.kits": "Kitaabada Xaalad-dhaafka ah",
-  
   "nav.home": "Guriga",
   "nav.bags": "Kiishashada",
   "nav.depot": "Bakhaarrada",
   "nav.products": "Alaabooyinka",
   "nav.settings": "Dejinta",
   "nav.info": "Macluumaadka",
-  
   "settings.appearance": "Muuqaalka",
   "settings.dark_theme": "Dulanka Madow",
   "settings.language": "Doorashada Luuqadda",
@@ -110,7 +108,6 @@
   "settings.help_support": "Caawinta & Taageerada",
   "settings.terms": "Shuruudaha Isticmaalka",
   "settings.privacy": "Siyaasadda Qarsoonda",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "Furasha Bakhaarrada",
   "depot.areas": "Meelaha Bakhaarrada",
   "depot.main": "Bakhaarka Ugu Weyn",
@@ -142,7 +138,6 @@
   "status.missing": "Alaabada Luma",
   "status.expiry_approaching": "Dhamaadka Ku Soo Dhow",
   "items.count": "{count} shay",
-  
   "products.title": "Alaabooyinka",
   "products.search": "Raadi Alaabooyin",
   "products.category": "Qeybta",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "Kiiish Cusub",
   "bag.create.name": "Magaca Kiishka",
   "bag.create.name_placeholder": "Tusaale: Kitaabka Xaalad-dhaafka ah ee Guriga",
   "bag.create.notes": "Fiiro gaar ah (Doorasho)",
   "bag.create.notes_placeholder": "Ku dar fiiro gaar ah ku saabsan waxa ku jira ama meelaha kiishkan...",
   "bag.create.button": "Abuur Kiiish",
-  
   "common.close": "Xir",
   "common.cancel": "Baabi'i",
   "common.confirm": "Xaqiiji",

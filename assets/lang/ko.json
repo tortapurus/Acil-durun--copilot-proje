@@ -78,14 +78,12 @@
   "blanket": "담요",
   "total.items": "총 항목",
   "emergency.kits": "비상 키트",
-  
   "nav.home": "홈",
   "nav.bags": "가방",
   "nav.depot": "창고",
   "nav.products": "제품",
   "nav.settings": "설정",
   "nav.info": "정보",
-  
   "settings.appearance": "외관",
   "settings.dark_theme": "다크 테마",
   "settings.language": "언어 선택",
@@ -110,7 +108,6 @@
   "settings.help_support": "도움말 & 지원",
   "settings.terms": "이용 약관",
   "settings.privacy": "개인정보 보호정책",
-  
   "language.turkish": "Türkçe",
   "language.english": "English",
   "language.arabic": "العربية",
@@ -131,7 +128,6 @@
   "language.somali": "Soomaali",
   "language.myanmar": "မြန်မာ",
   "language.ukrainian": "Українська",
-  
   "depot.panel": "창고 패널",
   "depot.areas": "창고 구역",
   "depot.main": "메인 창고",
@@ -142,7 +138,6 @@
   "status.missing": "누락된 항목",
   "status.expiry_approaching": "만료일 접근",
   "items.count": "{count}개 항목",
-  
   "products.title": "제품",
   "products.search": "제품 검색",
   "products.category": "카테고리",
@@ -170,14 +165,12 @@
   "newProduct.image.label": "Product Image",
   "newProduct.image.helper": "Add product visuals here",
   "newProduct.image.captured": "Photo attached. Fill in the remaining fields.",
-  
   "bag.create.title": "새 가방",
   "bag.create.name": "가방 이름",
   "bag.create.name_placeholder": "예: 홈 비상 키트",
   "bag.create.notes": "메모 (선택사항)",
   "bag.create.notes_placeholder": "이 가방의 내용이나 위치에 대한 메모를 추가...",
   "bag.create.button": "가방 만들기",
-  
   "common.close": "닫기",
   "common.cancel": "취소",
   "common.confirm": "확인",

@@ -12,6 +12,7 @@ import 'screens/yeni_urun_ekle.dart';
 import 'screens/urun_detay.dart';
 import 'screens/bilgi_merkezi.dart';
 import 'screens/depo_paneli.dart';
+import 'screens/depo_detay.dart';
 import 'screens/barkod_tara.dart';
 import 'screens/yeni_canta_olustur.dart';
 import 'screens/ayarlar_ekrani.dart';
@@ -29,26 +30,28 @@ import 'services/notification_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   tz.initializeTimeZones();
-  
+
   // Tüm debug çizgilerini ve overflow indicatorlarını kapat
   debugPaintSizeEnabled = false;
   debugDisableClipLayers = false;
   debugDisablePhysicalShapeLayers = false;
   debugDisableOpacityLayers = false;
-  
+
   // System UI overlay style
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.light,
-    systemNavigationBarColor: Colors.black,
-    systemNavigationBarIconBrightness: Brightness.light,
-  ));
-  
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ),
+  );
+
   // Localization servisini başlat
   await LocalizationService.instance.loadSavedLanguage();
   await NotificationService().initialize();
   await SettingsService.instance.initialize();
-  
+
   runApp(const MyApp());
 }
 
@@ -67,9 +70,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider<LocalizationService>.value(
           value: LocalizationService.instance,
         ),
-        ChangeNotifierProvider<DataService>.value(
-          value: DataService.instance,
-        ),
+        ChangeNotifierProvider<DataService>.value(value: DataService.instance),
         ChangeNotifierProvider<SettingsService>.value(
           value: SettingsService.instance,
         ),
@@ -124,6 +125,16 @@ class _MyAppState extends State<MyApp> {
               '/': (context) => const AnaSayfa(),
               '/acil-durum': (context) => const AcilDurumPaneli(),
               '/depo': (context) => const DepoPaneli(),
+              '/depo-detay': (context) {
+                final args = ModalRoute.of(context)?.settings.arguments;
+                String? depotId;
+                if (args is String) {
+                  depotId = args;
+                } else if (args is Map<String, dynamic>) {
+                  depotId = args['depotId'] as String?;
+                }
+                return DepoDetay(depotId: depotId);
+              },
               '/barkod-tara': (context) => const BarkodTaraEkrani(),
               '/urunler': (context) => const UrunListesi(),
               '/yeni-urun': (context) {
@@ -152,8 +163,9 @@ class _MyAppState extends State<MyApp> {
                   } else {
                     final String? productId = args['productId'] as String?;
                     if (productId != null) {
-                      initialProduct =
-                          DataService.instance.getProductById(productId);
+                      initialProduct = DataService.instance.getProductById(
+                        productId,
+                      );
                     }
                   }
                 }
@@ -181,7 +193,8 @@ class _MyAppState extends State<MyApp> {
               '/ayarlar': (context) => const AyarlarEkrani(),
               '/yonetim-paneli': (context) => const YonetimPaneli(),
               '/app-info': (context) => const UygulamaBilgileriEkrani(),
-              '/language-selection': (context) => const LanguageSelectionScreen(),
+              '/language-selection': (context) =>
+                  const LanguageSelectionScreen(),
               '/acil-numaralar': (context) => const AcilDurumNumaralari(),
             },
           );

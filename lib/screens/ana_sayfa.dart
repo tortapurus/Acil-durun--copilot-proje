@@ -108,11 +108,11 @@ class _AnaSayfaState extends State<AnaSayfa>
                             child: ScaleTransition(
                               scale: Tween<double>(begin: 0.9, end: 1.1)
                                   .animate(
-                                CurvedAnimation(
-                                  parent: _pulseController,
-                                  curve: Curves.easeInOut,
-                                ),
-                              ),
+                                    CurvedAnimation(
+                                      parent: _pulseController,
+                                      curve: Curves.easeInOut,
+                                    ),
+                                  ),
                               child: Container(
                                 width: 10,
                                 height: 10,
@@ -226,10 +226,8 @@ class _AnaSayfaState extends State<AnaSayfa>
                           icon: Icons.add,
                           label: loc.t('home.quickActions.addProduct'),
                           color: ThemeColors.primaryGreen,
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            '/yeni-urun',
-                          ),
+                          onTap: () =>
+                              Navigator.pushNamed(context, '/yeni-urun'),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -238,10 +236,8 @@ class _AnaSayfaState extends State<AnaSayfa>
                           icon: Icons.photo_camera_outlined,
                           label: loc.t('home.quickActions.capture'),
                           color: ThemeColors.pastelBlue,
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            '/barkod-tara',
-                          ),
+                          onTap: () =>
+                              Navigator.pushNamed(context, '/barkod-tara'),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -250,10 +246,7 @@ class _AnaSayfaState extends State<AnaSayfa>
                           icon: Icons.inventory_2,
                           label: loc.t('home.quickActions.inventory'),
                           color: ThemeColors.primaryPurple,
-                          onTap: () => Navigator.pushNamed(
-                            context,
-                            '/urunler',
-                          ),
+                          onTap: () => Navigator.pushNamed(context, '/urunler'),
                         ),
                       ),
                     ],
@@ -394,11 +387,7 @@ class _AlertCard extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(12),
-            child: Icon(
-              icon,
-              color: iconColor,
-              size: 28,
-            ),
+            child: Icon(icon, color: iconColor, size: 28),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -543,11 +532,7 @@ class _StatCard extends StatelessWidget {
                   color: accent.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(
-                  icon,
-                  color: accent,
-                  size: 22,
-                ),
+                child: Icon(icon, color: accent, size: 22),
               ),
               Text(
                 value,
@@ -562,10 +547,7 @@ class _StatCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             label,
-            style: const TextStyle(
-              color: ThemeColors.textWhite,
-              fontSize: 14,
-            ),
+            style: const TextStyle(color: ThemeColors.textWhite, fontSize: 14),
           ),
         ],
       ),
@@ -607,11 +589,7 @@ class _QuickActionButton extends StatelessWidget {
                 color: color.withValues(alpha: 0.2),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                icon,
-                color: color,
-                size: 24,
-              ),
+              child: Icon(icon, color: color, size: 24),
             ),
             const SizedBox(height: 10),
             Text(
@@ -656,11 +634,7 @@ class _AlertListSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                icon,
-                color: accent,
-                size: 18,
-              ),
+              Icon(icon, color: accent, size: 18),
               const SizedBox(width: 8),
               Text(
                 title,
@@ -708,10 +682,7 @@ class _AlertListSection extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: accent,
-                  ),
+                  Icon(Icons.chevron_right, color: accent),
                 ],
               ),
             ),
