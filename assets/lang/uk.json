@@ -186,5 +186,10 @@
   "photoCapture.description": "Після фото ви перейдете до форми товару.",
   "photoCapture.button": "Зняти фото",
   "photoCapture.loading": "Опрацювання фото...",
-  "photoCapture.error": "Не вдалося зробити фото. Спробуйте ще раз."
+  "photoCapture.error": "Не вдалося зробити фото. Спробуйте ще раз.",
+  "call.confirm.title": "Почати виклик?",
+  "call.confirm.message": "Ви збираєтесь позвонити на наступний номер:",
+  "call.confirm.cancel": "Відмінити",
+  "call.confirm.call": "Позвонити",
+  "call.initiated.success": "Виклик розпочато"
 }

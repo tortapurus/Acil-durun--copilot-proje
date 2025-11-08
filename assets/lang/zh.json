@@ -145,5 +145,10 @@
   "common.confirm": "确认",
   "common.add": "添加",
   "common.remove": "移除",
-  "common.update": "更新"
+  "common.update": "更新",
+  "call.confirm.title": "开始通话?",
+  "call.confirm.message": "您将要拨打以下号码:",
+  "call.confirm.cancel": "取消",
+  "call.confirm.call": "通话",
+  "call.initiated.success": "通话已开始"
 }

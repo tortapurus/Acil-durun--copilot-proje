@@ -144,5 +144,10 @@
   "common.confirm": "تصدیق",
   "common.add": "شامل کریں",
   "common.remove": "ہٹائیں",
-  "common.update": "اپڈیٹ"
+  "common.update": "اپڈیٹ",
+  "call.confirm.title": "کال کریں?",
+  "call.confirm.message": "آپ درج ذیل نمبر پر کال کرنے والے ہیں:",
+  "call.confirm.cancel": "منسوخ کریں",
+  "call.confirm.call": "کال کریں",
+  "call.initiated.success": "کال شروع ہو گئی"
 }
