@@ -179,6 +179,52 @@ class AcilDurumNumaralari extends StatelessWidget {
     LocalizationService loc,
     String number,
   ) async {
+    // Show confirmation dialog first
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          backgroundColor: ThemeColors.bgCard,
+          title: Text(
+            loc.t('call.confirm.title'),
+            style: const TextStyle(color: ThemeColors.textWhite),
+          ),
+          content: Text(
+            '${loc.t('call.confirm.message')}\n$number',
+            style: const TextStyle(color: ThemeColors.textWhite),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(false),
+              child: Text(
+                loc.t('call.confirm.cancel'),
+                style: const TextStyle(color: ThemeColors.pastelRed),
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: ThemeColors.pastelGreen,
+              ),
+              onPressed: () => Navigator.of(dialogContext).pop(true),
+              child: Text(
+                loc.t('call.confirm.call'),
+                style: const TextStyle(color: Colors.black),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    // If user didn't confirm, return
+    if (confirmed != true) {
+      return;
+    }
+
+    // Capture messenger and other references before async operations
+    if (!context.mounted) return;
+
+    // User confirmed, proceed with the call
     final Uri uri = Uri(scheme: 'tel', path: number);
     final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
 
@@ -193,10 +239,9 @@ class AcilDurumNumaralari extends StatelessWidget {
       if (launched) {
         messenger.showSnackBar(
           SnackBar(
-            content: Text(
-              loc.t('emergency.numbers.calling', {'number': number}),
-            ),
-            backgroundColor: ThemeColors.bg3,
+            content: Text(loc.t('call.initiated.success')),
+            backgroundColor: Colors.green,
+            duration: const Duration(seconds: 2),
           ),
         );
       } else {

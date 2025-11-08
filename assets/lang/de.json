@@ -183,5 +183,10 @@
   "photoCapture.description": "Nach dem Foto gelangen Sie direkt zum Produktformular.",
   "photoCapture.button": "Foto aufnehmen",
   "photoCapture.loading": "Foto wird verarbeitet...",
-  "photoCapture.error": "Foto konnte nicht aufgenommen werden. Bitte erneut versuchen."
+  "photoCapture.error": "Foto konnte nicht aufgenommen werden. Bitte erneut versuchen.",
+  "call.confirm.title": "Anruf starten?",
+  "call.confirm.message": "Sie sind dabei, die folgende Nummer anzurufen:",
+  "call.confirm.cancel": "Abbrechen",
+  "call.confirm.call": "Anrufen",
+  "call.initiated.success": "Anruf eingeleitet"
 }

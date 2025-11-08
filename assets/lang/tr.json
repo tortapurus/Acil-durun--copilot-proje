@@ -312,5 +312,10 @@
   "photoCapture.description": "Fotoğraf çekildikten sonra bilgiler ekranına yönlendirileceksiniz.",
   "photoCapture.button": "Fotoğraf Çek",
   "photoCapture.loading": "Fotoğraf hazırlanıyor...",
-  "photoCapture.error": "Fotoğraf alınamadı. Lütfen tekrar deneyin."
+  "photoCapture.error": "Fotoğraf alınamadı. Lütfen tekrar deneyin.",
+  "call.confirm.title": "Aramayı Başlat?",
+  "call.confirm.message": "Aşağıdaki numaraya arama yapmak üzeresiniz:",
+  "call.confirm.cancel": "Vazgeç",
+  "call.confirm.call": "Ara",
+  "call.initiated.success": "Arama başlatıldı"
 }

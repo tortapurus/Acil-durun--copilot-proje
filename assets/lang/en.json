@@ -312,5 +312,10 @@
   "photoCapture.description": "After the photo is taken, you'll jump straight to the product form.",
   "photoCapture.button": "Take Photo",
   "photoCapture.loading": "Processing the photo...",
-  "photoCapture.error": "Couldn't capture the photo. Please try again."
+  "photoCapture.error": "Couldn't capture the photo. Please try again.",
+  "call.confirm.title": "Start Call?",
+  "call.confirm.message": "You are about to call the following number:",
+  "call.confirm.cancel": "Cancel",
+  "call.confirm.call": "Call",
+  "call.initiated.success": "Call initiated"
 }

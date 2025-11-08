@@ -184,5 +184,10 @@
   "photoCapture.description": "Después de tomar la foto irás directamente al formulario del producto.",
   "photoCapture.button": "Tomar Foto",
   "photoCapture.loading": "Procesando la foto...",
-  "photoCapture.error": "No se pudo tomar la foto. Inténtalo de nuevo."
+  "photoCapture.error": "No se pudo tomar la foto. Inténtalo de nuevo.",
+  "call.confirm.title": "¿Iniciar llamada?",
+  "call.confirm.message": "Estás a punto de llamar al siguiente número:",
+  "call.confirm.cancel": "Cancelar",
+  "call.confirm.call": "Llamar",
+  "call.initiated.success": "Llamada iniciada"
 }

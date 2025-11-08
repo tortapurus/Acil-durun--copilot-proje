@@ -184,5 +184,10 @@
   "photoCapture.description": "After the photo is taken, you'll jump straight to the product form.",
   "photoCapture.button": "Take Photo",
   "photoCapture.loading": "Processing the photo...",
-  "photoCapture.error": "Couldn't capture the photo. Please try again."
+  "photoCapture.error": "Couldn't capture the photo. Please try again.",
+  "call.confirm.title": "بدء المكالمة؟",
+  "call.confirm.message": "أنت على وشك الاتصال برقم:",
+  "call.confirm.cancel": "إلغاء",
+  "call.confirm.call": "اتصل",
+  "call.initiated.success": "تم بدء المكالمة"
 }
